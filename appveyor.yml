@@ -11,7 +11,7 @@ environment:
   matrix:
     - MSVC_VERSION: 19
       RUNTIME_LINKAGE: static
-      QT_VERSION: 5.15
+      QT_VERSION: 5.15.1
       QT_LINKAGE: static
       COVERITY_BUILD_CANDIDATE: True
       #https://www.appveyor.com/docs/build-environment/#qt
@@ -51,12 +51,12 @@ after_build:
   - copy %APPVEYOR_BUILD_FOLDER%-build\%CONFIGURATION%\%BIN%.exe deploy\%BIN%.exe
   - windeployqt --qmldir %APPVEYOR_BUILD_FOLDER%/qml --%CONFIGURATION% deploy/%BIN%.exe --verbose=2
   - for %%I in (%PRJLIBS%) do copy %PRJLIBDIR%\%%I deploy\
-  - 7z a -tzip %BIN%_%CONFIGURATION%.zip deploy -r
-  - copy %APPVEYOR_BUILD_FOLDER%-build\%BIN%_%CONFIGURATION%.zip %APPVEYOR_BUILD_FOLDER%\%BIN%_%CONFIGURATION%.zip
-  - dir /b /s *.zip
+  - 7z a -mtr=off -mtm=off -mta=off -mtc=off -mhc=on -mf=on -ms=on -mqs=on -mmf=bt4 -mfb=273 -mmc=1000000000 -md=1536M -mx=9 -myx=9 -ma=1 %BIN%_%CONFIGURATION%.7z deploy -r
+  - copy %APPVEYOR_BUILD_FOLDER%-build\%BIN%_%CONFIGURATION%.7z %APPVEYOR_BUILD_FOLDER%\%BIN%_%CONFIGURATION%.7z
+  - dir /b /s *.7z
 
 artifacts:
-  - path: '%BIN%_%CONFIGURATION%.zip'
+  - path: '%BIN%_%CONFIGURATION%.7z'
     name: '%BIN%'
 
 deploy:
