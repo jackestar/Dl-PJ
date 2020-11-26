@@ -7,8 +7,12 @@ CONFIG += \
 					c++17 \
 					staticlib \
 					static	\
-					embed_translations
-#					embed_manifest_exe
+					embed_translations \
+#					embed_manifest_exe \
+					windows
+
+QMAKE_RESOURCE_FLAGS += -threshold 0 -compress 9
+PRECOMPILED_HEADER
 
 #QMAKE_CXXFLAGS_RELEASE += -o3
 
