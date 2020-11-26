@@ -5,28 +5,19 @@ init:
   - ps: $env:commit = $env:appveyor_repo_commit.SubString(0,7)
   - ps: Update-AppveyorBuild -Version ("{0}-{1}-{2}" -f $env:appveyor_repo_branch,$env:appveyor_build_number,$env:commit )
 
-# os: Visual Studio 2019
+os: Visual Studio 2019
 
 environment:
   matrix:
-    - job_name: VisualStudio19
-      MSVC_VERSION: 19
+    - MSVC_VERSION: 19
       RUNTIME_LINKAGE: static
-      QT_VERSION: 5.15
+      QT_VERSION: 5.15.1
       QT_LINKAGE: static
       COVERITY_BUILD_CANDIDATE: True
       #https://www.appveyor.com/docs/build-environment/#qt
       QTDIR: C:\Qt\%QT_VERSION%\msvc2019_64
       PRJLIBS: VCRUNTIME140.dll MSVCP140.dll ucrtbased.dll
 
-    - job_name: MinGwin64
-      RUNTIME_LINKAGE: static
-      QT_VERSION: 5.15
-      QT_LINKAGE: static
-      COVERITY_BUILD_CANDIDATE: True
-      #https://www.appveyor.com/docs/build-environment/#qt
-      QTDIR: C:\Qt\%QT_VERSION%\mingw81_64
-      PRJLIBS: libgcc_s_seh-1.dll libstdc++-6.dll libwinpthread-1.dll
 configuration:
   - release
   - debug
@@ -38,7 +29,7 @@ install:
   - set PRJLIBDIR=%WINDIR%\SysWOW64 # Find vclibss
   - set QTDIR
   - call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvarsall.bat" amd64
-  - set BIN=DL-JS_Lis
+  - set BIN=x64Release
 
 before_build:
   # Prepare the out-of-source build directory.
@@ -55,32 +46,25 @@ build_script:
 after_build:
   # Add a link to the build output within the source directory. This is needed because AppVeyor does
   # not support extracting artifacts from out-of-source build directories. See 'artifacts' below.
-  - echo "Agregando youtube-dl"
-  - $source = "https://youtube-dl.org/downloads/latest/youtube-dl.exe"
-  - $destination = "%APPVEYOR_BUILD_FOLDER%\youtube-dl.exe"
-  - Invoke-WebRequest $source -OutFile $destination
   - dir /b /s *.exe
   - mkdir deploy
   - copy %APPVEYOR_BUILD_FOLDER%-build\%CONFIGURATION%\%BIN%.exe deploy\%BIN%.exe
   - windeployqt --qmldir %APPVEYOR_BUILD_FOLDER%/qml --%CONFIGURATION% deploy/%BIN%.exe --verbose=2
   - for %%I in (%PRJLIBS%) do copy %PRJLIBDIR%\%%I deploy\
-  - 7z a x=9 yx=9 tr=off tm=off  mf=bt4 fb=273 mc=1000000000 d=1536M %BIN%_%CONFIGURATION%.7z deploy -r
-  - copy %APPVEYOR_BUILD_FOLDER%-build\%BIN%_%CONFIGURATION%.7z %APPVEYOR_BUILD_FOLDER%\%BIN%_%CONFIGURATION%.7z
+  - 7z a -mtr=off -mtm=off -mta=off -mtc=off -mhc=on -mf=on -ms=on -mqs=on -mmf=bt4 -mfb=273 -mmc=1000000000 -md=1536M -mx=9 -myx=9 -ma=1 %BIN%_%CONFIGURATION%.7z deploy -r
+  - copy %APPVEYOR_BUILD_FOLDER%-build\%BIN%_%CONFIGURATION%.zip %APPVEYOR_BUILD_FOLDER%\%BIN%_%CONFIGURATION%.zip
   - dir /b /s *.zip
 
 artifacts:
-  - path: '%BIN%_%CONFIGURATION%.zip'
+  - path: '%BIN%_%CONFIGURATION%.7z'
     name: '%BIN%'
 
 deploy:
-  release: myproduct-v$(APPVEYOR_BUILD_VERSION)
-  description: 'Auto Build'
-  provider: GitHub
-  # auth_token:
-    # secure: <your encrypted token> # your encrypted token from GitHub
-  artifact: '%BIN%'          # upload all NuGet packages to release assets
-  draft: false
-  prerelease: true
-  on:
-    branch: master                 # release from master branch only
-    APPVEYOR_REPO_TAG: true 
+  - provider: GitHub
+    on:
+      branch: master
+    release: continuous
+    artifact: '%BIN%'
+    draft: false
+    prerelease: true
+    auth_token:

@@ -1,12 +1,12 @@
 # DL-JS
 
 [Pagina Oficial](#) :link:
-Interfaz grafica no oficial de __[Youtube-DL](Github)__ y pre-configuración para descarga, conversión de audio, video y subtítulos.
+Interfaz grafica no oficial de __[Youtube-DL](https://github.com/ytdl-org/youtube-dl)__ y pre-configuración para descarga, conversión de audio, video y subtítulos.
 
 ## Características
 * Descarga Audio Video y Subtitulos :musical_note: :movie_camera: :label:
 * Descarga subtitulos en Español o en Ingles
-*	Pre-configuración para [youtube-dl](https://youtube-dl.org/) y [ffmpeg](#). 
+*	Pre-configuración para [youtube-dl](https://youtube-dl.org/) y [ffmpeg](https://ffmpeg.org/). 
 *	Posibilidad de ajustar calidad (Resolución, FPS, Audio Rate).
 * Preconfigurado para la mejor calidad disponible.
 *	Pre-configuración para YouTube/Music, Facebook, Cronchyroll
