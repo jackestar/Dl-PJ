@@ -180,12 +180,12 @@ QString Config (char config[]) {
     Ret += "(best)";
     break;
   }
-  int Scount = config.count("A") + config.count("B") + config.count("C") + config.count("D") + config.count("E") + config.count("F") + config.count("G") + config.count("H") + config.count("I") + config.count("J") + config.count("K");
+  int Scount = config.count('A') + config.count('B') + config.count('C') + config.count('D') + config.count('E') + config.count('F') + config.count('G') + config.count('H') + config.count('I') + config.count('J') + config.count('K');
   if (Scount == 0) Ret += "\"";
   for (MinInt lis = 1; lis <= (strlen(config) + 3); ++lis) {
-    if (Scount == 1) config.replace((config.indexOf("]")), 1, "]\"");
-    else if (Scount == 2) config.replace((config.indexOf("]",indexOf("]")+1)), 3, "]\"");
-    else if (Scount == 2) config.replace((config.indexOf("]",indexOf("]",indexOf("]"+1))+1)), 3, "]\"");
+    if (Scount == 1) Ret.replace((Ret.indexOf("]")), 1, "]\"");
+    else if (Scount == 2) Ret.replace((Ret.indexOf("]",Ret.indexOf("]")+1)), 3, "]\"");
+    else if (Scount == 2) Ret.replace((Ret.indexOf("]",Ret.indexOf("]",Ret.indexOf("]"+1))+1)), 3, "]\"");
     switch (config[lis]) {
       case 'A':
       Ret+= "[height<?200]"; //114p
