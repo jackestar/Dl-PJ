@@ -271,7 +271,7 @@ QString Config (char config[]) {
       break;
     }
   }
-  if (Ret.contains("]")) Ret.replace(indexOf("] -"), 3,"]\" -");
+  if (Ret.contains("]")) Ret.replace(Ret.indexOf("] -"), 3,"]\" -");
   return Ret;
 }
 
