@@ -180,7 +180,9 @@ QString Config (char config[]) {
     Ret += "(best)";
     break;
   }
-  int Scount = config.count('A') + config.count('B') + config.count('C') + config.count('D') + config.count('E') + config.count('F') + config.count('G') + config.count('H') + config.count('I') + config.count('J') + config.count('K');
+  int Scount = 0;
+  QString configT = config;
+  Scount = configT.count('A') + configT.count('B') + configT.count('C') + configT.count('D') + configT.count('E') + configT.count('F') + configT.count('G') + configT.count('H') + configT.count('I') + configT.count('J') + configT.count('K');
   if (Scount == 0) Ret += "\"";
   for (MinInt lis = 1; lis <= (strlen(config) + 3); ++lis) {
     if (Scount == 1) Ret.replace((Ret.indexOf("]")), 1, "]\"");
