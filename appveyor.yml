@@ -52,8 +52,8 @@ after_build:
   - windeployqt --qmldir %APPVEYOR_BUILD_FOLDER%/qml --%CONFIGURATION% deploy/%BIN%.exe --verbose=2
   - for %%I in (%PRJLIBS%) do copy %PRJLIBDIR%\%%I deploy\
   - 7z a -mtr=off -mtm=off -mta=off -mtc=off -mhc=on -mf=on -ms=on -mqs=on -mmf=bt4 -mfb=273 -mmc=1000000000 -md=1536M -mx=9 -myx=9 -ma=1 %BIN%_%CONFIGURATION%.7z deploy -r
-  - copy %APPVEYOR_BUILD_FOLDER%-build\%BIN%_%CONFIGURATION%.zip %APPVEYOR_BUILD_FOLDER%\%BIN%_%CONFIGURATION%.zip
-  - dir /b /s *.zip
+  - copy %APPVEYOR_BUILD_FOLDER%-build\%BIN%_%CONFIGURATION%.7z %APPVEYOR_BUILD_FOLDER%\%BIN%_%CONFIGURATION%.7z
+  - dir /b /s *.7z
 
 artifacts:
   - path: '%BIN%_%CONFIGURATION%.7z'
