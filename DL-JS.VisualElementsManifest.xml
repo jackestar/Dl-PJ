@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <VisualElements 
+  	DisplayName = "DL-JS"
+  	Description = "Gestor de Descargas de Multimedia"
+  	ForegroundText="light"
+  	BackgroundColor="#ee4b00"
+  	ShowNameOnSquare150x150Logo="off"
+  	Square150x150Logo="VisualElementsManifest\VisualElement256f.png"
+  	Square70x70Logo="VisualElementsManifest\VisualElement150f.png"
+		wide310x150Logo="VisualElementsManifest\VisualElement310.png">
+  	</VisualElements>
+</Application>
