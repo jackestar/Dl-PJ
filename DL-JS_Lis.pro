@@ -7,7 +7,7 @@ CONFIG += \
 					c++17 \
 					staticlib \
 					static	\
-					embed_translations \
+					#embed_translations \
 #					embed_manifest_exe \
 					windows
 
