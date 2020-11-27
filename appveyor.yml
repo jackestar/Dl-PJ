@@ -40,7 +40,7 @@ before_build:
 build_script:
   # Compile it and check for .exe
   - cd %APPVEYOR_BUILD_FOLDER%-build
-  - nmake
+  - nmake /D /P
   - dir /b /s *.exe
 
 after_build:
