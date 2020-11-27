@@ -3,7 +3,7 @@ TARGET=DL-JS
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += \
-					lrelease \
+					#lrelease \
 					c++17 \
 					staticlib \
 					static	\
@@ -49,9 +49,9 @@ QMAKE_TARGET_PRODUCT = DL-JS Lis
 
 #RES_FILE = resource.rc
 
-TRANSLATIONS += \
-		DL-JS_lis_esp.ts \
-		DL-JS_lis_eng.ts
+#TRANSLATIONS += \
+#		DL-JS_lis_esp.ts \
+#		DL-JS_lis_eng.ts
 
 
 # You can also make your code fail to compile if it uses deprecated APIs.
