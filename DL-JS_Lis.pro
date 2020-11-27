@@ -1,5 +1,5 @@
 QT       += core gui testlib network winextras
-TARGET=DL-JS
+TARGET= x64Release
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += \
@@ -22,7 +22,7 @@ PRECOMPILED_HEADER
 # deprecated API in order to know how to port your code away from it.
 DEFINES += QT_DEPRECATED_WARNINGS
 RESOURCES += qdarkstyle/style.qrc \
-						Icons.qrc
+		Icons.qrc
 
 RC_ICONS = icon.ico
 
@@ -65,8 +65,8 @@ SOURCES += \
 
 HEADERS += \
     PreconfQT.hpp \
-		mainwindow.hpp \
-		Strings_Langs.hpp
+		mainwindow.hpp 
+		#Strings_Langs.hpp
 
 FORMS += \
     mainwindow.ui
