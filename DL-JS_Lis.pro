@@ -1,5 +1,5 @@
 QT       += core gui testlib network winextras
-TARGET= DL-JS
+TARGET=DL-JS
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += \

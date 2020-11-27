@@ -58,13 +58,3 @@ after_build:
 artifacts:
   - path: '%BIN%_%CONFIGURATION%.7z'
     name: '%BIN%'
-
-deploy:
-  - provider: GitHub
-    on:
-      branch: master
-    release: continuous
-    artifact: '%BIN%'
-    draft: false
-    prerelease: true
-    auth_token:
