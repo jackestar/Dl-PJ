@@ -8,7 +8,7 @@
 //#include "Strings_Langs.hpp"
 //#include <QMessageBox>
 
-#include <QLocale>
+//#include <QLocale>
 QString LangString[10];
 
 MainWindow::MainWindow(QWidget *parent)
@@ -17,7 +17,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
 
 
-const QLocale Lang = QLocale::system();
+//const QLocale Lang = QLocale::system();
 
 // Returns
 // QLocale::Chinese 25
@@ -45,7 +45,7 @@ const QLocale Lang = QLocale::system();
 
 //////English
 
-QString Eng[9] = {
+/*QString Eng[9] = {
   "Complete",
   "Error",
   "Falta Youtube-DL y FFmpeg",
@@ -78,7 +78,7 @@ else if (Lang == QLocale::English) {
   LangString[7] = "Ingrese todos los datos";
   LangString[8] = "Ingrese un nombre!!!";
 }
-else {
+else {*/
   LangString[0] ="Completo";
   LangString[1] ="Error";
   LangString[2] ="Falta Youtube-DL y FFmpeg";
@@ -93,7 +93,7 @@ else {
 //    ui->Report->setText("weTalkSpan");
 //  }
 //  ui->Report->setText(Lang.name());
-}
+//}
 //ingles
 
   ui->setupUi(this);
