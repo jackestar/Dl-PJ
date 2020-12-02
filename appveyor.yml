@@ -29,7 +29,7 @@ install:
   - set PRJLIBDIR=%WINDIR%\SysWOW64 # Find vclibss
   - set QTDIR
   - call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvarsall.bat" amd64
-  - set BIN=x64Release
+  - set BIN=DL-JS
 
 before_build:
   # Prepare the out-of-source build directory.

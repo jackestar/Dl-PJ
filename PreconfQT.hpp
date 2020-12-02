@@ -47,10 +47,6 @@ QString URLanlz (QString URL, bool config[]) {
   const QString Umyot = "music.youtube.com";
   if (config[0] && URL.contains(Uyout)) URL.replace(URL.indexOf(Uyout),Uyout.length(),Umyot);
   if (config[1] && URL.contains("&")) URL.remove(URL.indexOf("&"),(URL.length()) - URL.indexOf("&"));
-  // if (config[2] && URL.contains("&list=")) { //Pruebas Para Desuso
-  //   if ( URL.contains(Uyout) ) URL = "https://"+Uyout+"/playlist?list=" + URL.mid(URL.indexOf("&list=") + 6,URL.length() - (URL.indexOf("&list=") + 6));
-  //   else if ( URL.contains(Umyot) ) URL = "https://"+Umyot+"/playlist?list=" + URL.mid(URL.indexOf("&list=") + 6,URL.length() - (URL.indexOf("&list=") + 6));
-  // }
   return URL;
 }
 
@@ -71,10 +67,6 @@ else if (URL.contains("cnn.com")) return  "CNN";
 else if (URL.contains("tiktok.com")) return "TikTok";
 else if (URL.contains("adultswim.com")) return "Adult Swim";
 else if (URL.contains("plus.google.com")) return "Google Plus";
-//else if (URL.contains("")) return "";
-//else if (URL.contains("")) return "";
-//else if (URL.contains("")) return "";
-//else if (URL.contains("")) return "";
 
 
 else {
@@ -82,13 +74,7 @@ else {
     if (Temp.count(".html") == 1) Temp = Temp.remove(".html");
     else if (Temp.count(".php") == 1) Temp = Temp.remove(".php");
     else if (Temp.count(".xhtml") == 1) Temp = Temp.remove(".xhtml");
-
-//    if (URL.contains("www.") && URL.contains(".com")) Temp = URL.mid((URL.indexOf("www.")+4),URL.indexOf(".com") - (URL.indexOf("www.")+4));
-//    else if (URL.contains("www.") && URL.contains(".net")) Temp = URL.mid((URL.indexOf("www.")+4),URL.indexOf(".net") - (URL.indexOf("www.")+4));
-//    else if (URL.contains("www.") && URL.contains(".co.")) Temp = URL.mid((URL.indexOf("www.")+4),URL.indexOf(".co.") - (URL.indexOf("www.")+4));
-//    else if (!URL.contains("www.") && URL.contains("://") && URL.contains(".com")) Temp = URL.mid((URL.indexOf("://")+3),URL.indexOf(".com") - (URL.indexOf("://")+3));
-//    else if (!URL.contains("www.") && URL.contains("://") && URL.contains(".net")) Temp = URL.mid((URL.indexOf("://")+3),URL.indexOf(".net") - (URL.indexOf("://")+3));
-      if (URL.contains("://") && Temp.count(".") == 1) Temp = URL.mid((URL.indexOf("://")+3), URL.indexOf(".") - (URL.indexOf("://")+3));
+      if (URL.contains("://") && Temp.count(".") == 1) Temp = URL.mid((URL.indexOf("://")+3),URL.indexOf(".") - (URL.indexOf("://")+3));
 
     else { //Simple Between
       if (Temp.count(".") > 1) Temp = URL.mid((URL.indexOf(".")+1), (URL.indexOf(".",(URL.indexOf(".")+1)) - (URL.indexOf(".")+1) ));
@@ -180,14 +166,7 @@ QString Config (char config[]) {
     Ret += "(best)";
     break;
   }
-  //int Scount = 0;
-  //QString configT = config;
-  //Scount = configT.count('A') + configT.count('B') + configT.count('C') + configT.count('D') + configT.count('E') + configT.count('F') + configT.count('G') + configT.count('H') + configT.count('I') + configT.count('J') + configT.count('K');
-  //if (Scount == 0) Ret += "\"";
   for (MinInt lis = 1; lis <= (strlen(config) + 3); ++lis) {
-    //if (Scount == 1) Ret.replace((Ret.indexOf("]")), 1, "]\"");
-    //else if (Scount == 2) Ret.replace((Ret.indexOf("]",Ret.indexOf("]")+1)), 3, "]\"");
-    //else if (Scount == 2) Ret.replace((Ret.indexOf("]",Ret.indexOf("]",Ret.indexOf("]"+1))+1)), 3, "]\"");
     switch (config[lis]) {
       case 'A':
       Ret+= "[height<?200]"; //114p
@@ -256,10 +235,10 @@ QString Config (char config[]) {
       Ret+= " --mark-watched";
       break;
       case '0':
-      Ret+= " --sub-lang esLA/esES/esVE/es/esp/es_LA";
+      Ret+= " --sub-lang \"esLA/esES/esVE/es/esp/es_LA/ES_es-419/es-419\"";
       break;
       case '-':
-      Ret+= " --sub-lang enUS/enUK/en/eng";
+      Ret+= " --sub-lang \"enUS/enUK/en/eng\"";
       break;
       case '(':
       Ret+= " --yes-playlist ";
@@ -271,7 +250,8 @@ QString Config (char config[]) {
       break;
     }
   }
-  //if (Ret.contains("]")) Ret.replace(Ret.indexOf("] -"), 3,"]\" -");
+  if (Ret.contains("]")) Ret.replace(Ret.indexOf("] -"), 3,"]\" -");
+  else Ret.replace(Ret.indexOf(") -"), 3,")\" -");
   return Ret;
 }
 
@@ -283,16 +263,8 @@ QString Config (char config[]) {
 #endif
 
 // retorna en 0 si se ejecuto correntamente
-//bool Execut (QString URLanlz, QString &Config) {
-//      QString comandoA = "title YoutubeDL-JS && color 3 && "; // Console Decore
-//      comandoA += DLexe +Config + URLanlz;
-//      if (Debug) comandoA += " && pause";
-//      Config = comandoA;
-//      return system(toCharString(comandoA));
-//}
 
 bool Execut (QString URLanlz, QString &Config) {
-      /*system("title YoutubeDL-JS && color 3 ");*/ // Console Decore
       QString comandoA = DLexe + Config + " " + URLanlz;
       Config = comandoA;
       bool resul = system(toCharString(comandoA));

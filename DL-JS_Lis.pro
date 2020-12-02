@@ -1,18 +1,14 @@
-QT       += core gui testlib network winextras
-TARGET= x64Release
+QT       += core gui testlib network #winextras
+TARGET= DL-JS
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += \
-					#lrelease \
+					lrelease \
 					c++17 \
 					staticlib \
 					static	\
-					#embed_translations \
-#					embed_manifest_exe \
-					windows
-
-QMAKE_RESOURCE_FLAGS += -threshold 0 -compress 9
-PRECOMPILED_HEADER
+					embed_translations
+#					embed_manifest_exe
 
 #QMAKE_CXXFLAGS_RELEASE += -o3
 
@@ -22,17 +18,17 @@ PRECOMPILED_HEADER
 # deprecated API in order to know how to port your code away from it.
 DEFINES += QT_DEPRECATED_WARNINGS
 RESOURCES += qdarkstyle/style.qrc \
-		Icons.qrc
+						Icons.qrc
 
-RC_ICONS = icon.ico
+#RC_ICONS = icon.ico
 
-win32:VERSION = 0.5.006
-else:VERSION = 0.5.006
-VERSION_PE_HEADER = 0.5.006
-QMAKE_TARGET_COPYRIGHT = Jackestar 2020
-QMAKE_TARGET_COMPANY = Jackestar
-QMAKE_TARGET_DESCRIPTION = DL-JS MediaDowloader Jackestar 2020
-QMAKE_TARGET_PRODUCT = DL-JS Lis
+#win32:VERSION = 0.5.006
+#else:VERSION = 0.5.006
+#VERSION_PE_HEADER = 0.5.006
+#QMAKE_TARGET_COPYRIGHT = Jackestar 2020
+#QMAKE_TARGET_COMPANY = Jackestar
+#QMAKE_TARGET_DESCRIPTION = DL-JS MediaDowloader Jackestar 2020
+#QMAKE_TARGET_PRODUCT = DL-JS Lis
 #RC_LANG = 0x419
 
 #WINRT_MANIFEST.default_language = es
@@ -47,11 +43,11 @@ QMAKE_TARGET_PRODUCT = DL-JS Lis
 #WINRT_MANIFEST.name = DL-JS
 #WINRT_MANIFEST.version = 0.5.006
 
-#RES_FILE = resource.rc
+RC_FILE = resource.rc
 
-#TRANSLATIONS += \
-#		DL-JS_lis_esp.ts \
-#		DL-JS_lis_eng.ts
+TRANSLATIONS += \
+		DL-JS_lis_esp.ts \
+		DL-JS_lis_eng.ts
 
 
 # You can also make your code fail to compile if it uses deprecated APIs.
@@ -65,8 +61,8 @@ SOURCES += \
 
 HEADERS += \
     PreconfQT.hpp \
-		mainwindow.hpp 
-		#Strings_Langs.hpp
+		mainwindow.hpp \
+		Strings_Langs.hpp
 
 FORMS += \
     mainwindow.ui

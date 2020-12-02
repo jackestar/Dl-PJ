@@ -5,103 +5,17 @@
 #define MMPEG
 #define ConDebug
 #include "PreconfQT.hpp"
-//#include "Strings_Langs.hpp"
-//#include <QMessageBox>
+#include "Strings_Langs.hpp"
 
-//#include <QLocale>
-QString LangString[10];
 
 MainWindow::MainWindow(QWidget *parent)
   : QMainWindow(parent)
   , ui(new Ui::MainWindow)
 {
-
-
-//const QLocale Lang = QLocale::system();
-
-// Returns
-// QLocale::Chinese 25
-// QLocale::English 31
-// QLocale::French 37
-// QLocale::Italian 58
-// QLocale::Japanese 59
-// QLocale::Portugues 91
-// QLocale::Russian 96
-// QLocale::Spanish 111
-
-// Spanish def
-
-//QString LangString[9] = {
-//  "Completo",
-//  "Error",
-//  "Falta Youtube-DL y FFmpeg",
-//  "Falta Youtube-DL",
-//  "Descarga De Youtube DL & FFMpeg",
-//  "Presiona Ctrl + U Para descargar Youtube-DL y FFMpeg",
-//  "Ingrese URL",
-//  "Ingrese todos los datos",
-//  "Ingrese un nombre!!!"
-//};
-
-//////English
-
-/*QString Eng[9] = {
-  "Complete",
-  "Error",
-  "Falta Youtube-DL y FFmpeg",
-  "Falta Youtube-DL",
-  "Descarga De Youtube DL & FFMpeg",
-  "Presiona Ctrl + U Para descargar Youtube-DL y FFMpeg",
-  "Enter URL",
-  "Ingrese todos los datos",
-  "Ingrese un nombre!!!"
-};
-if (Lang == QLocale::Spanish) {
-  LangString[0] ="Completo";
-  LangString[1] ="Error";
-  LangString[2] ="Falta Youtube-DL y FFmpeg";
-  LangString[3] ="Falta Youtube-DL";
-  LangString[4] ="Descarga De Youtube DL & FFMpeg";
-  LangString[5] ="Presiona Ctrl + U Para descargar Youtube-DL y FFMpeg";
-  LangString[6] ="Ingrese URL";
-  LangString[7] ="Ingrese todos los datos";
-  LangString[8] ="Ingrese un nombre!!!";
-}
-else if (Lang == QLocale::English) {
-  LangString[0] = "Complete";
-  LangString[1] = "Error";
-  LangString[2] = "Falta Youtube-DL y FFmpeg";
-  LangString[3] = "Falta Youtube-DL";
-  LangString[4] = "Descarga De Youtube DL & FFMpeg";
-  LangString[5] = "Presiona Ctrl + U Para descargar Youtube-DL y FFMpeg";
-  LangString[6] = "Enter URL";
-  LangString[7] = "Ingrese todos los datos";
-  LangString[8] = "Ingrese un nombre!!!";
-}
-else {*/
-  LangString[0] ="Completo";
-  LangString[1] ="Error";
-  LangString[2] ="Falta Youtube-DL y FFmpeg";
-  LangString[3] ="Falta Youtube-DL";
-  LangString[4] ="Descarga De Youtube DL & FFMpeg";
-  LangString[5] ="Presiona Ctrl + U Para descargar Youtube-DL y FFMpeg";
-  LangString[6] ="Ingrese URL";
-  LangString[7] ="Ingrese todos los datos";
-  LangString[8] ="Ingrese un nombre!!!";
-//  ui->Status->setText(LangString[1]);
-//  if (Lang == QLocale::Spanish) {
-//    ui->Report->setText("weTalkSpan");
-//  }
-//  ui->Report->setText(Lang.name());
-//}
-//ingles
-
+GetIdiom();
   ui->setupUi(this);
   QFile f(":qdarkstyle/style.qss");
   if (!f.exists())  {
-//    QMessageBox msgBox;
-//    msgBox.setText("Error durante la compilación, Estilos Erroneos");
-//    msgBox.exec();
     ui->Status->setText(LangString[1]);
 } else   {
       f.open(QFile::ReadOnly | QFile::Text);
@@ -134,53 +48,55 @@ void MainWindow::Iniz2 (QString FileName,const bool FileNameBool,const MinInt& M
     PrConfg[0] = '#'; // Por descarte          //worst
   }
   if (Mode!=3) {
-  switch (ui->VRes->currentIndex()) { //Resolucion
-    case 1:
-      PrConfg[1] = 'A';
-      break;
-    case 2:
-      PrConfg[1] = 'B';
-      break;
-    case 3:
-      PrConfg[1] = 'C';
-      break;
-    case 4:
-      PrConfg[1] = 'D';
-      break;
-    case 5:
-      PrConfg[1] = 'E';
-      break;
-    case 6:
-      PrConfg[1] = 'F';
-      break;
-    case 7:
-      PrConfg[1] = 'G';
-      break;
-    default:
-      PrConfg[1] = ' ';
-      break;
-  }
-  switch (ui->VFPS->currentIndex()) {
-    case 1:
-      PrConfg[2] = 'J';
-      break;
-    case 2:
-      PrConfg[2] = 'K';
-      break;
-    default:
-      PrConfg[2] = ' ';
-      break;
-  }
-  switch (ui->AAdR->currentIndex()) {
-    case 1:
-      PrConfg[3] = 'H';
-      break;
-    case 2:
-      PrConfg[3] = 'I';
-      break;
-    default:
-      PrConfg[3] = ' ';
-      break;
+    switch (ui->AAdR->currentIndex()) { // Audio rate
+      case 1:
+        PrConfg[3] = 'H';
+        break;
+      case 2:
+        PrConfg[3] = 'I';
+        break;
+      default:
+        PrConfg[3] = ' ';
+        break;
+    }
+  if (Mode!=1) {
+    switch (ui->VRes->currentIndex()) { //Resolucion
+      case 1:
+        PrConfg[1] = 'A';
+        break;
+      case 2:
+        PrConfg[1] = 'B';
+        break;
+      case 3:
+        PrConfg[1] = 'C';
+        break;
+      case 4:
+        PrConfg[1] = 'D';
+        break;
+      case 5:
+        PrConfg[1] = 'E';
+        break;
+      case 6:
+        PrConfg[1] = 'F';
+        break;
+      case 7:
+        PrConfg[1] = 'G';
+        break;
+      default:
+        PrConfg[1] = ' ';
+        break;
+    }
+    switch (ui->VFPS->currentIndex()) { //FPS
+      case 1:
+        PrConfg[2] = 'J';
+        break;
+      case 2:
+        PrConfg[2] = 'K';
+        break;
+      default:
+        PrConfg[2] = ' ';
+        break;
+    }
   }
  }
 
@@ -224,7 +140,7 @@ void MainWindow::Iniz2 (QString FileName,const bool FileNameBool,const MinInt& M
   // if (ui->Oelst->isChecked()) URLc[2] = true;
   if (ui->Oelst->isChecked()) PrConfg[12] = '(';  //Playlist
   QString Conf = Config(PrConfg);
-  if (!(ui->Lpass->text().isEmpty())/* && ui->Luser->text().isEmpty())*/) { // Descartada doble verificación
+  if (!(ui->Lpass->text().isEmpty())) { // Descartada doble verificación
     Conf +=" -u \"" + ui->Luser->text() +"\" -p \"";
     Conf += ui->Lpass->text()+"\"";
 
@@ -403,7 +319,7 @@ void MainWindow::on_Oalbm_stateChanged(int arg1)
 //Update
 void MainWindow::on_Bupdt_clicked()
 {
-  system("DL-net.exe d c");
+  system("download.exe d c");
 }
 
 void MainWindow::on_Bfnme_clicked()
@@ -445,7 +361,6 @@ void MainWindow::Iniz (const MinInt& Mode) {
       while ( temp && ui->Lfnam->text().isEmpty()) {
         QSignalSpy spy(ui->Bfnme, SIGNAL(clicked(bool)));
         temp = !spy.wait(1610612737); // We Need Change this
-//        int ttem = 1610612737;
       }
 
       ui->Mode1->setEnabled(true);
@@ -467,17 +382,17 @@ void MainWindow::Iniz (const MinInt& Mode) {
 
 void MainWindow::on_LKgit_clicked()
 {
-     QDesktopServices::openUrl(QUrl("www.github.com/"));
+     QDesktopServices::openUrl(QUrl("www.github.com/jackestar"));
 }
 
 void MainWindow::on_LKweb_clicked()
 {
-    QDesktopServices::openUrl(QUrl("#/indexDL.html"));
+    QDesktopServices::openUrl(QUrl("jackestar.netlify.app/indexDL.html"));
 }
 
 void MainWindow::on_LKdoc_clicked()
 {
-    QDesktopServices::openUrl(QUrl("#/DLdocs.html"));
+    QDesktopServices::openUrl(QUrl("jackestar.netlify.app/DLdocs.html"));
 }
 
 void MainWindow::on_LKmal_clicked()
