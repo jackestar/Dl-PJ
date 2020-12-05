@@ -6,7 +6,7 @@ build_script:
   - cd %APPVEYOR_BUILD_FOLDER%-build
   - set BIN=DL-JS
   - cd %APPVEYOR_BUILD_FOLDER%
-  - C:\Qt\5.15.1\mingw81_64\qmake -o %APPVEYOR_BUILD_FOLDER%-build -r -Wall -Wlogic -Wparser CONFIG+=%CONFIGURATION% %APPVEYOR_BUILD_FOLDER% DL-JS_Lis.pro
+  - C:\Qt\5.15.1\mingw81_64\qmake -o %APPVEYOR_BUILD_FOLDER%-build -r -Wall -Wlogic -Wparser CONFIG+=release DL-JS_Lis.pro
   - cd %APPVEYOR_BUILD_FOLDER%-build
   - C:\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\bin\mingw32-make
 
@@ -16,13 +16,13 @@ after_build:
   - dir /b /s *.exe
   - mkdir deploy
   - dir /s %APPVEYOR_BUILD_FOLDER%-build
-  - copy %APPVEYOR_BUILD_FOLDER%-build\%CONFIGURATION%\%BIN%.exe deploy\%BIN%.exe
-  - windeployqt --qmldir %APPVEYOR_BUILD_FOLDER%/qml --%CONFIGURATION% deploy/%BIN%.exe --verbose=2
+  - copy %APPVEYOR_BUILD_FOLDER%-build\release\%BIN%.exe deploy\%BIN%.exe
+  - windeployqt --qmldir %APPVEYOR_BUILD_FOLDER%/qml --release deploy/%BIN%.exe --verbose=2
   - for %%I in (%PRJLIBS%) do copy %PRJLIBDIR%\%%I deploy\
-  - 7z a -mtr=off -mtm=off -mta=off -mtc=off -mhc=on -mf=on -ms=on -mqs=on -mmf=bt4 -mfb=273 -mmc=1000000000 -md=1536M -mx=9 -myx=9 -ma=1 %BIN%_%CONFIGURATION%.7z deploy -r
-  - copy %APPVEYOR_BUILD_FOLDER%-build\%BIN%_%CONFIGURATION%.7z %APPVEYOR_BUILD_FOLDER%\%BIN%_%CONFIGURATION%.7z
+  - 7z a -mtr=off -mtm=off -mta=off -mtc=off -mhc=on -mf=on -ms=on -mqs=on -mmf=bt4 -mfb=273 -mmc=1000000000 -md=1536M -mx=9 -myx=9 -ma=1 %BIN%_release.7z deploy -r
+  - copy %APPVEYOR_BUILD_FOLDER%-build\%BIN%_release.7z %APPVEYOR_BUILD_FOLDER%\%BIN%_release.7z
   - dir /b /s *.7z
 
 artifacts:
-  - path: '%BIN%_%CONFIGURATION%.7z'
+  - path: '%BIN%_release.7z'
     name: '%BIN%'
