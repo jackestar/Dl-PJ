@@ -25,7 +25,7 @@ configuration:
 install:
   # Set and load necessary variables
   - '%QTDIR%\bin\qtenv2.bat'
-  - qmake -v
+  - qmake
   - set PRJLIBDIR=%WINDIR%\SysWOW64 # Find vclibss
   - set QTDIR
   - call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvarsall.bat" amd64
@@ -48,6 +48,7 @@ after_build:
   # not support extracting artifacts from out-of-source build directories. See 'artifacts' below.
   - dir /b /s *.exe
   - mkdir deploy
+  - dir /s %APPVEYOR_BUILD_FOLDER%-build\
   - copy %APPVEYOR_BUILD_FOLDER%-build\%CONFIGURATION%\%BIN%.exe deploy\%BIN%.exe
   - windeployqt --qmldir %APPVEYOR_BUILD_FOLDER%/qml --%CONFIGURATION% deploy/%BIN%.exe --verbose=2
   - for %%I in (%PRJLIBS%) do copy %PRJLIBDIR%\%%I deploy\
