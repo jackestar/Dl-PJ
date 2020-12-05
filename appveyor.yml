@@ -1,13 +1,14 @@
 install:
-  - set QTDIR=C:\Qt\5.15.1\mingw81_64;PATH=%PATH%;%QTDIR%\bin;C:\MinGW\bin
+  - set QTDIR=C:\Qt\5.15.1\mingw81_64
+  - set PATH=%PATH%;%QTDIR%\bin;C:\MinGW\bin
 build_script:
   - mkdir %APPVEYOR_BUILD_FOLDER%-build
   - cd %APPVEYOR_BUILD_FOLDER%-build
   - set BIN=DL-JS
   - cd %APPVEYOR_BUILD_FOLDER%
-  - qmake -o %APPVEYOR_BUILD_FOLDER%-build -r -Wall -Wlogic -Wparser CONFIG+=%CONFIGURATION% %APPVEYOR_BUILD_FOLDER% DL-JS_Lis.pro
+  - C:\Qt\5.15.1\mingw81_64\qmake -o %APPVEYOR_BUILD_FOLDER%-build -r -Wall -Wlogic -Wparser CONFIG+=%CONFIGURATION% %APPVEYOR_BUILD_FOLDER% DL-JS_Lis.pro
   - cd %APPVEYOR_BUILD_FOLDER%-build
-  - mingw32-make
+  - C:\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\bin\mingw32-make
 
 after_build:
   # Add a link to the build output within the source directory. This is needed because AppVeyor does
