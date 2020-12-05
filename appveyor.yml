@@ -1,27 +1,16 @@
-version: '{branch}-{build}'
-
-configuration:
-  - release
-  - debug
-
 install:
   - set QTDIR=C:\Qt\5.15.1\mingw81_64
   - set PATH=%PATH%;%QTDIR%\bin;C:\MinGW\bin
-  - set BIN=DL-JS
-
-before_build:
-  # Prepare the out-of-source build directory.
-  - cd %APPVEYOR_BUILD_FOLDER%
-  - mkdir %APPVEYOR_BUILD_FOLDER%-build
-  - qmake -o %APPVEYOR_BUILD_FOLDER%-build -r -Wall -Wlogic -Wparser CONFIG+=%CONFIGURATION% %APPVEYOR_BUILD_FOLDER%
-
 build_script:
   - cd %APPVEYOR_BUILD_FOLDER%-build
-#  - qmake QtTest.pro
+  - set BIN=DL-JS
+  - cd %APPVEYOR_BUILD_FOLDER%
+  - mkdir %APPVEYOR_BUILD_FOLDER%-build
+  - qmake -o %APPVEYOR_BUILD_FOLDER%-build -r -Wall -Wlogic -Wparser CONFIG+=%CONFIGURATION% %APPVEYOR_BUILD_FOLDER% DL-JS_Lis.pro
+  - cd %APPVEYOR_BUILD_FOLDER%-build
   - mingw32-make
-  - dir /b /s *.exe
 
-  after_build:
+after_build:
   # Add a link to the build output within the source directory. This is needed because AppVeyor does
   # not support extracting artifacts from out-of-source build directories. See 'artifacts' below.
   - dir /b /s *.exe
