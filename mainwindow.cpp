@@ -8,12 +8,17 @@
 #include "Strings_Langs.hpp"
 
 
-MainWindow::MainWindow(QWidget *parent)
-  : QMainWindow(parent)
-  , ui(new Ui::MainWindow)
-{
-GetIdiom();
+MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) , ui(new Ui::MainWindow) {
   ui->setupUi(this);
+  // Establecer Idioma
+  if (GetIdiom()) {
+    ui->Status->setText("Traducción no disponible");
+    ui->Report->setText("La aplicación no tiene soporte para el idioma "+LangString[10]+" La apllicación pasa al Español por defecto");
+  }
+  if (LangString[10] == "Spanish") ui->VRes->setCurrentIndex(0);
+  else if (LangString[10] == "English") ui->VRes->setCurrentIndex(1);
+
+  // Establecer Estilos
   QFile f(":qdarkstyle/style.qss");
   if (!f.exists())  {
     ui->Status->setText(LangString[1]);
@@ -25,7 +30,7 @@ GetIdiom();
   ui->ConfigW->move(400,300);
   ui->Fname->move(400,300);
   ui->Fabot->move(400,300);
-  system("title YoutubeDL-JS && color 3 && cls");
+  system("title DL-JS Consola && color 3 && cls");
 }
 
 MainWindow::~MainWindow()
@@ -107,7 +112,7 @@ void MainWindow::Iniz2 (QString FileName,const bool FileNameBool,const MinInt& M
     if (ui->Oalbm->isChecked()) PrConfg[6] = '+'; // Album Mode
     else if (!FileNameBool) PrConfg[6] = '3';     // File Name
 
-  if ( (WebName == "crunchyroll") || ( Mode == 3 && Mode != 1) || (Estate == 3 && Mode == 2) ) {
+  if ( (WebName == "crunchyroll") || ( Mode == 3 ) || (Estate == 3 && Mode == 2 && ui->Ofzsb->isChecked()) ) {
     PrConfg[9] = '4';                             // Write Sub
       switch (ui->SLang->currentIndex()) {
         case 0:
@@ -120,7 +125,7 @@ void MainWindow::Iniz2 (QString FileName,const bool FileNameBool,const MinInt& M
           PrConfg[13] = ' ';
           break;
     }
-    if ((Estate == 3 && Mode == 2)) PrConfg[8] = '/'; //Embed Sub
+    if ( Mode == 2 ) PrConfg[8] = '/'; //Embed Sub
   }
 
   bool URLc[3] = {false,false,false};
@@ -137,7 +142,6 @@ void MainWindow::Iniz2 (QString FileName,const bool FileNameBool,const MinInt& M
   ui->Progress->setValue(25);
 
   if (ui->Ourla->isChecked()) URLc[1] = true;     //Analizar URL
-  // if (ui->Oelst->isChecked()) URLc[2] = true;
   if (ui->Oelst->isChecked()) PrConfg[12] = '(';  //Playlist
   QString Conf = Config(PrConfg);
   if (!(ui->Lpass->text().isEmpty())) { // Descartada doble verificación
@@ -152,7 +156,8 @@ void MainWindow::Iniz2 (QString FileName,const bool FileNameBool,const MinInt& M
   }
 
   ui->Progress->setValue(35);
-  if(!Execut(URLanlz(ui->URL->text() , URLc) , Conf)) {
+
+  if (!Execut(URLanlz(ui->URL->text() , URLc) , Conf)) {
       if (!(ui->Lpass->text().isEmpty())) {
       Conf = Conf.replace( (Conf.indexOf("\" -p \"") + 6) , ui->Lpass->text().length() ,"******");
       }
@@ -178,8 +183,8 @@ void MainWindow::on_URL_textChanged(const QString &arg1)
       ui->Mode1->setEnabled(false);
       ui->Mode2->setEnabled(false);
       ui->Mode3->setEnabled(false);
-      Inic == 0 ? ui->Status->setText(LangString[2]): void();
-      Inic == 2 ? ui->Status->setText(LangString[3]): void();
+      if (Inic == 0) ui->Status->setText(LangString[2]);
+      if (Inic == 2) ui->Status->setText(LangString[3]);
       ui->Bupdt->setEnabled(true);
       ui->Report->setText(LangString[4]);
       ui->Report->setText(LangString[5]);
@@ -210,15 +215,22 @@ void MainWindow::on_Config_clicked()
       ui->Ometa->setEnabled(false);
       ui->Otumb->setEnabled(false);
       ui->Ofzmt->setEnabled(false);
+      ui->Ofzsb->setEnabled(false);
+
       ui->Ometa->setChecked(false);
       ui->Otumb->setChecked(false);
       ui->Ofzmt->setChecked(false);
+      ui->Ofzsb->setChecked(false);
     } else {
       ui->Ometa->setEnabled(true);
       ui->Otumb->setEnabled(true);
       ui->Ofzmt->setEnabled(true);
-      ui->Ometa->setChecked(true);
-      ui->Otumb->setChecked(true);
+      ui->Ofzsb->setEnabled(true);
+
+      ui->Ometa->setChecked(true);  //Default
+      ui->Otumb->setChecked(true);  //Default
+//      ui->Ofzmt->setChecked(true);
+//      ui->Ofzsb->setChecked(true);
     }
 }
 
@@ -233,7 +245,7 @@ void MainWindow::on_Bsave_clicked()
     ui->CLabel7->setText(LangString[7]);
   }
 }
-
+// Reset
 void MainWindow::on_Brest_clicked()
 {
     ui->Oanam->setChecked(true);
@@ -255,6 +267,10 @@ void MainWindow::on_Brest_clicked()
     ui->VRes->setCurrentIndex(0);
     ui->VFPS->setCurrentIndex(0);
     ui->AAdR->setCurrentIndex(0);
+    // Sub Idiom
+    if (LangString[10] == "Spanish") ui->VRes->setCurrentIndex(0);
+    else if (LangString[10] == "English") ui->VRes->setCurrentIndex(1);
+    system("cls"); // Liampiar Consola
 }
 
 void MainWindow::on_lineEdit_textChanged(const QString &arg1)
@@ -280,17 +296,20 @@ void MainWindow::on_Babut_clicked()
 //Modo 1
 void MainWindow::on_Mode1_clicked()
 {
+ ui->Status->setText(LangString[9]);
  Iniz(1);
 }
 
 // Modo 2
 void MainWindow::on_Mode2_clicked()
 {
+  ui->Status->setText(LangString[9]);
   Iniz(2);
 }
 // Modo 3
 void MainWindow::on_Mode3_clicked()
 {
+  ui->Status->setText(LangString[9]);
   Iniz(3);
 }
 
@@ -319,7 +338,7 @@ void MainWindow::on_Oalbm_stateChanged(int arg1)
 //Update
 void MainWindow::on_Bupdt_clicked()
 {
-  system("download.exe d c");
+  system("DL-net.exe d c");
 }
 
 void MainWindow::on_Bfnme_clicked()
@@ -345,7 +364,7 @@ void MainWindow::on_Lfnam_textChanged(const QString &arg1)
 #include <QTimer>
 
 void MainWindow::Iniz (const MinInt& Mode) {
-  system("color 2");
+  system("color 3");
   if (!ui->URL->text().isEmpty()) {
     ui->Progress->setEnabled(true);
     ui->Progress->setValue(10);
@@ -387,12 +406,12 @@ void MainWindow::on_LKgit_clicked()
 
 void MainWindow::on_LKweb_clicked()
 {
-    QDesktopServices::openUrl(QUrl("jackestar.netlify.app/indexDL.html"));
+    QDesktopServices::openUrl(QUrl("jackestar.netlify.app/indexDL"));
 }
 
 void MainWindow::on_LKdoc_clicked()
 {
-    QDesktopServices::openUrl(QUrl("jackestar.netlify.app/DLdocs.html"));
+    QDesktopServices::openUrl(QUrl("jackestar.netlify.app/DLdocs"));
 }
 
 void MainWindow::on_LKmal_clicked()

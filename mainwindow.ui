@@ -229,7 +229,7 @@
       <x>10</x>
       <y>160</y>
       <width>380</width>
-      <height>25</height>
+      <height>20</height>
      </rect>
     </property>
     <property name="font">
@@ -238,6 +238,9 @@
       <weight>50</weight>
       <bold>false</bold>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:#151f2a;</string>
     </property>
     <property name="value">
      <number>0</number>
@@ -259,7 +262,7 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>200</y>
+      <y>185</y>
       <width>400</width>
       <height>20</height>
      </rect>
@@ -280,9 +283,9 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>230</y>
+      <y>215</y>
       <width>400</width>
-      <height>65</height>
+      <height>80</height>
      </rect>
     </property>
     <property name="text">
@@ -572,7 +575,7 @@ background:#19232D;
     </widget>
     <widget class="QCheckBox" name="Ofzsb">
      <property name="enabled">
-      <bool>true</bool>
+      <bool>false</bool>
      </property>
      <property name="geometry">
       <rect>

@@ -1,5 +1,5 @@
-#define VER_FILEVERSION 0,5,007,0
-#define VER_FILEVERSION_STR "0.5.007.0\0"
+#define VER_FILEVERSION 0,5,007,1
+#define VER_FILEVERSION_STR "0.5.007.1\0"
 
 #include <windows.h>
 
@@ -28,7 +28,7 @@ BEGIN
 				VALUE "CompanyName", "Jackestar"
 				VALUE "FileDescription", "YoutubeDL Jackestar Qt Ver. Projecto Liluim Lis"
 				VALUE "FileVersion", VER_FILEVERSION_STR
-				VALUE "InternalName", "DL-JS Beta1"
+				VALUE "InternalName", "DL-JS Beta5"
 				VALUE "LegalCopyright", "Jackestar 2020®"
 				VALUE "LegalTrademarks1", "Jackestar and Thirds"
 				VALUE "LegalTrademarks2", "Jackestar® and Thirds"

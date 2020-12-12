@@ -24,7 +24,7 @@ typedef unsigned short int MinInt;
 
 inline const char* toCharString(QString String);
 
-MinInt Start(void); //Estado de Librerias
+MinInt Start(void); //Detecta youtubeDL y FFmpeg
 QString URLanlz (QString URL, bool config[]); // Limpeza de URL
 QString URLanlz (QString URL);  //WebSite Name
 QString Config (char config[]); // Argumentos de DL
@@ -33,15 +33,14 @@ bool Execut (QString URLanlz, QString &Config); //Ejecucion de DL
 
 inline const char* toCharString(QString String) { // inline para trasformar de QString
     QByteArray tst = String.toLocal8Bit();
-  return (const char *)tst;
+  return (const char *) tst;
 }
 
 QString URLanlz (QString URL, bool config[]) {
 /*  Bool Config Array
 
     1 Auto music.youtube.com
-    2 clean &
-    3 extract playlist //Posible Desusdo
+    2 clean "&"
 */
   const QString Uyout = "www.youtube.com";
   const QString Umyot = "music.youtube.com";
@@ -53,32 +52,35 @@ QString URLanlz (QString URL, bool config[]) {
 QString URLanlz (QString URL) {
 
 URL = URL.toLower();
-if (URL.contains("music.youtube.com")) return  "Youtube Music";
-else if (URL.contains("drive.google.com")) return  "Google Drive";
-else if (URL.contains("www.hbo.com")) return  "HBO";
-else if (URL.contains("abc.net.au")) return  "ABC";
-else if (URL.contains("abcnews.go.com")) return  "ABC News";
-else if (URL.contains("abc7news.com") || URL.contains("clips.abcotvs.com")) return "ABC Owned Television Stations";
-else if (URL.contains("anime-on-demand.de")) return  "Anime On Demand";
-else if (URL.contains("bbc.co.uk") || URL.contains("bbc.com")) return "BBC iPlayer";
-else if (URL.contains("cartoonnetwork.com")) return  "Cartoon Network";
-else if (URL.contains("comedycentral.com") || URL.contains("cc.com")) return "Comedy Central";
-else if (URL.contains("cnn.com")) return  "CNN";
-else if (URL.contains("tiktok.com")) return "TikTok";
-else if (URL.contains("adultswim.com")) return "Adult Swim";
-else if (URL.contains("plus.google.com")) return "Google Plus";
+// Salida de nombres complejos
+if (URL.contains("music.youtube.com/")) return  "Youtube Music";
+else if (URL.contains("drive.google.com/")) return  "Google Drive";
+else if (URL.contains("www.hbo.com/")) return  "HBO";
+else if (URL.contains("abc.net.au/")) return  "ABC";
+else if (URL.contains("abcnews.go.com/")) return  "ABC News";
+else if (URL.contains("abc7news.com/") || URL.contains("clips.abcotvs.com")) return "ABC Owned Television Stations";
+else if (URL.contains("anime-on-demand.de/")) return  "Anime On Demand";
+else if (URL.contains("bbc.co.uk/") || URL.contains("bbc.com")) return "BBC iPlayer";
+else if (URL.contains("cartoonnetwork.com/")) return  "Cartoon Network";
+else if (URL.contains("comedycentral.com/") || URL.contains("cc.com")) return "Comedy Central";
+else if (URL.contains("cnn.com/")) return  "CNN";
+else if (URL.contains("tiktok.com/")) return "TikTok";
+else if (URL.contains("adultswim.com/")) return "Adult Swim";
+else if (URL.contains("plus.google.com/")) return "Google Plus";
+else if (URL.contains("roosterteeth.com/")) return "Rooster Teeth";
+//else if (URL.contains("")) return "";
 
-
+// Salida predeterminada
 else {
     QString Temp = URL;
     if (Temp.count(".html") == 1) Temp = Temp.remove(".html");
     else if (Temp.count(".php") == 1) Temp = Temp.remove(".php");
     else if (Temp.count(".xhtml") == 1) Temp = Temp.remove(".xhtml");
-      if (URL.contains("://") && Temp.count(".") == 1) Temp = URL.mid((URL.indexOf("://")+3),URL.indexOf(".") - (URL.indexOf("://")+3));
 
+    if (URL.contains("://") && Temp.count(".") == 1) Temp = URL.mid((URL.indexOf("://")+3),URL.indexOf(".") - (URL.indexOf("://")+3));
     else { //Simple Between
       if (Temp.count(".") > 1) Temp = URL.mid((URL.indexOf(".")+1), (URL.indexOf(".",(URL.indexOf(".")+1)) - (URL.indexOf(".")+1) ));
-      else if (Temp.count(".") == 1) Temp = Temp.left(URL.indexOf(".")) ;
+      else if (Temp.count(".") == 1) Temp = Temp.left(URL.indexOf("."));
     }
 
     return Temp;
