@@ -18,6 +18,7 @@
 #endif
 
 #include <QString>
+//#include "Strings_Langs.hpp"
 using namespace std;
 
 typedef unsigned short int MinInt;
@@ -29,6 +30,7 @@ QString URLanlz (QString URL, bool config[]); // Limpeza de URL
 QString URLanlz (QString URL);  //WebSite Name
 QString Config (char config[]); // Argumentos de DL
 bool Execut (QString URLanlz, QString &Config); //Ejecucion de DL
+bool Updte (MinInt Type);
 
 
 inline const char* toCharString(QString String) { // inline para trasformar de QString
@@ -237,7 +239,7 @@ QString Config (char config[]) {
       Ret+= " --mark-watched";
       break;
       case '0':
-      Ret+= " --sub-lang \"esLA/esES/esVE/es/esp/es_LA/ES_es-419/es-419\"";
+      Ret+= " --sub-lang \"esLA/esES/esVE/es/esp/es_LA/es_419/es-419\"";
       break;
       case '-':
       Ret+= " --sub-lang \"enUS/enUK/en/eng\"";
@@ -245,8 +247,8 @@ QString Config (char config[]) {
       case '(':
       Ret+= " --yes-playlist ";
       break;
-      case '+':
-      Ret+= " -o \"%(album)s-%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s\" ";
+//      case '+':
+//      Ret+= " -o \"%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s\" ";
       break;
       default:
       break;
@@ -265,16 +267,14 @@ QString Config (char config[]) {
 #endif
 
 // retorna en 0 si se ejecuto correntamente
-
 bool Execut (QString URLanlz, QString &Config) {
       QString comandoA = DLexe + Config + " " + URLanlz;
       Config = comandoA;
       bool resul = system(toCharString(comandoA));
-      if (resul) system("color 4");
-      else system("color 2");
+      if (resul) system("color 4 && echo ///////// Completo /////////");
+      else system("color 2 && echo ///////// Error /////////");
       return resul;
 }
-
 
 #include <fstream>
 MinInt Start(void) {
@@ -297,4 +297,33 @@ MinInt Start(void) {
       //1 = Se Encontro Youtube DL
       //2 = Solo se Encontro FFMpeg (Advertencia)
       //3 = Se encontro DL y FFMpeg
+}
+#include <QFile>
+#include <iostream>
+bool Updte (MinInt Type = 0) {
+  /*
+  0 Uptdate all and Clean (by default)
+  1 Update DL
+  2 Update FFmpeg
+  3 Update DL-JS (From Actions LIst Server) (To Do)
+  4 Clean
+  */
+
+if (Type == 0) {
+  system(".\\bin\\wget.exe -o \"..\\youtube-dl.exe\" -q https://youtube-dl.org/downloads/latest/youtube-dl.exe");
+  system(".\\bin\\wget.exe -o \"..\\ffmpeg-release-essentials.7z\" -q https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.7z");
+
+  QFile file("\"%ProgramFiles%\\7-Zip\\7z.exe\\\"");
+  if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+    if  (system("\"%ProgramFiles%\\7-Zip\\7z.exe\" -aoa e ./ffmpeg-*.7z ffmpeg.exe -r")) cout<<"Error al descomprimir\n";
+      else {
+        QFile file2("\"%ProgramFiles%\\WinRAR\\rar.exe\\\"");
+        if (file2.open(QIODevice::ReadOnly | QIODevice::Text)) {
+            if  (system("\"%ProgramFiles%\\WinRAR\\winrar.exe\" e ./ffmpeg-release-essentials.7z -r ffmpeg*exe")) cout<<"Error al descomprimir\n";
+        } else cout<<"7Zip? WinRar?";
+  }
+  if (system("del *.old ffmpeg-*.7z")) cout<<"Error";
+  }
+}
+return 0;
 }

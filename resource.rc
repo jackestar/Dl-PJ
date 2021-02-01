@@ -1,5 +1,5 @@
-#define VER_FILEVERSION 0,5,007,1
-#define VER_FILEVERSION_STR "0.5.007.1\0"
+#define VER_FILEVERSION 0,5,008,1
+#define VER_FILEVERSION_STR "0.5.008.0\1"
 
 #include <windows.h>
 

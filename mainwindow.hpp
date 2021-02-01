@@ -4,6 +4,9 @@
 #include <QMainWindow>
 #include <QFile>
 #include <QTextStream>
+#include <QFileDialog>
+#include <QDir>
+#include <QTranslator>
 
 typedef unsigned short int MinInt;
 
@@ -22,7 +25,11 @@ class MainWindow : public QMainWindow
   private slots:
     void Iniz(const MinInt& Mode);
 
-    void Iniz2(QString FileName,const bool FileNameBool,const MinInt& Mode);
+    void Iniz2(const bool FileNameBool,const MinInt& Mode,QString FileName="");
+
+    void IStart (void);
+
+    bool GetIdiom();
 
     void on_Mode1_clicked();
 
@@ -33,8 +40,6 @@ class MainWindow : public QMainWindow
     void on_Bsave_clicked();
 
     void on_Brest_clicked();
-
-    void on_lineEdit_textChanged(const QString &arg1);
 
     void on_Done_clicked();
 
@@ -52,13 +57,7 @@ class MainWindow : public QMainWindow
 
     void on_Mode3_clicked();
 
-    void on_Ourla_stateChanged(int arg1);
-
     void on_Bupdt_clicked();
-
-    void on_Bfnme_clicked();
-
-    void on_Lfnam_textChanged(const QString &arg1);
 
     void on_Oanam_stateChanged(int arg1);
 

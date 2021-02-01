@@ -7,7 +7,6 @@
   	BackgroundColor="#ee4b00"
   	ShowNameOnSquare150x150Logo="off"
   	Square150x150Logo="VisualElementsManifest\VisualElement256f.png"
-  	Square70x70Logo="VisualElementsManifest\VisualElement150f.png"
-		wide310x150Logo="VisualElementsManifest\VisualElement310.png">
+  	Square70x70Logo="VisualElementsManifest\VisualElement150f.png">
   	</VisualElements>
 </Application>

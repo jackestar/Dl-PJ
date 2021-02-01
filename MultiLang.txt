@@ -1,0 +1,26 @@
+Español
+
+"Completo";
+"Error";
+"Falta Youtube-DL y FFmpeg";
+"Falta Youtube-DL";
+"Descarga De Youtube DL & FFMpeg";
+"Presiona Ctrl + U Para descargar Youtube-DL y FFMpeg";
+"Ingrese URL";
+"Ingrese todos los datos";
+"Ingrese un nombre!!!";
+"Espere a la Consola";
+
+"El URL no arroja nombre\n";
+"No Encontrado\n";
+"Error Removiendo Respaldo\n";
+"Encontrado\n";
+"Error removiendo archivo\n";
+"No se puede abrir para la escritura\n";
+"No Hay Argumentos\nUso:  DL-net [opcion]\n\nOpciones:\n y   Youtube-dl\n f   FFMpeg\n d   Ambos\n c   Limpiar\n\nSolo usuarios Avanzados\nEjecute \"DL-JS.exe\" e ingrese en Configuración para actualizar\nJackestar 2020";
+"Argumentos Incorrectos\n";
+"Error de SSL:\n";
+"Download failed:\n";
+"El pedido fue redirijido.\n";
+"Descarga terminada (Guardada)\n";
+

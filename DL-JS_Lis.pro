@@ -1,5 +1,5 @@
 QT       += core gui testlib network #winextras
-TARGET= DL-JS
+TARGET= DL-JS_Lis
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += \
@@ -61,8 +61,8 @@ SOURCES += \
 
 HEADERS += \
     PreconfQT.hpp \
-		mainwindow.hpp \
-		Strings_Langs.hpp
+		mainwindow.hpp
+#		Strings_Langs.hpp
 
 FORMS += \
     mainwindow.ui
