@@ -24,6 +24,8 @@
   </property>
   <property name="font">
    <font>
+    <family>Montserrat</family>
+    <pointsize>7</pointsize>
     <stylestrategy>PreferAntialias</stylestrategy>
    </font>
   </property>
@@ -43,6 +45,11 @@
       <height>30</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>Montserrat</family>
+     </font>
+    </property>
     <property name="cursor">
      <cursorShape>PointingHandCursor</cursorShape>
     </property>
@@ -53,8 +60,8 @@
      <string/>
     </property>
     <property name="icon">
-     <iconset resource="Icons.qrc">
-      <normaloff>:/icons/svg/cog.svg</normaloff>:/icons/svg/cog.svg</iconset>
+     <iconset resource="style.qrc">
+      <normaloff>:/style/Img/SVG/cog.svg</normaloff>:/style/Img/SVG/cog.svg</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -80,9 +87,11 @@
     </property>
     <property name="font">
      <font>
+      <family>Montserrat</family>
       <pointsize>20</pointsize>
       <weight>75</weight>
       <bold>true</bold>
+      <stylestrategy>PreferAntialias</stylestrategy>
      </font>
     </property>
     <property name="text">
@@ -100,6 +109,11 @@
       <width>400</width>
       <height>20</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Montserrat</family>
+     </font>
     </property>
     <property name="autoFillBackground">
      <bool>false</bool>
@@ -119,6 +133,13 @@
       <width>380</width>
       <height>30</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Montserrat</family>
+      <pointsize>8</pointsize>
+      <stylestrategy>PreferAntialias</stylestrategy>
+     </font>
     </property>
     <property name="inputMask">
      <string/>
@@ -145,6 +166,13 @@
       <height>30</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>Montserrat</family>
+      <pointsize>9</pointsize>
+      <stylestrategy>PreferAntialias</stylestrategy>
+     </font>
+    </property>
     <property name="cursor">
      <cursorShape>PointingHandCursor</cursorShape>
     </property>
@@ -152,8 +180,8 @@
      <string>Audio</string>
     </property>
     <property name="icon">
-     <iconset resource="Icons.qrc">
-      <normaloff>:/icons/svg/music.svg</normaloff>:/icons/svg/music.svg</iconset>
+     <iconset resource="style.qrc">
+      <normaloff>:/style/Img/SVG/music.svg</normaloff>:/style/Img/SVG/music.svg</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -174,6 +202,13 @@
       <height>30</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>Montserrat</family>
+      <pointsize>9</pointsize>
+      <stylestrategy>PreferAntialias</stylestrategy>
+     </font>
+    </property>
     <property name="cursor">
      <cursorShape>PointingHandCursor</cursorShape>
     </property>
@@ -181,8 +216,8 @@
      <string>Video</string>
     </property>
     <property name="icon">
-     <iconset resource="Icons.qrc">
-      <normaloff>:/icons/svg/video.svg</normaloff>:/icons/svg/video.svg</iconset>
+     <iconset resource="style.qrc">
+      <normaloff>:/style/Img/SVG/video.svg</normaloff>:/style/Img/SVG/video.svg</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -203,6 +238,13 @@
       <height>30</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>Montserrat</family>
+      <pointsize>9</pointsize>
+      <stylestrategy>PreferAntialias</stylestrategy>
+     </font>
+    </property>
     <property name="cursor">
      <cursorShape>PointingHandCursor</cursorShape>
     </property>
@@ -210,8 +252,8 @@
      <string>Subtitulos</string>
     </property>
     <property name="icon">
-     <iconset resource="Icons.qrc">
-      <normaloff>:/icons/svg/language.svg</normaloff>:/icons/svg/language.svg</iconset>
+     <iconset resource="style.qrc">
+      <normaloff>:/style/Img/SVG/language.svg</normaloff>:/style/Img/SVG/language.svg</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -237,6 +279,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Montserrat</family>
       <pointsize>9</pointsize>
       <weight>50</weight>
       <bold>false</bold>
@@ -272,7 +315,9 @@
     </property>
     <property name="font">
      <font>
+      <family>Montserrat</family>
       <pointsize>10</pointsize>
+      <stylestrategy>PreferAntialias</stylestrategy>
      </font>
     </property>
     <property name="text">
@@ -290,6 +335,11 @@
       <width>400</width>
       <height>80</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Montserrat</family>
+     </font>
     </property>
     <property name="text">
      <string/>
@@ -310,11 +360,16 @@
     </property>
     <property name="geometry">
      <rect>
-      <x>0</x>
+      <x>400</x>
       <y>0</y>
       <width>400</width>
       <height>300</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Montserrat</family>
+     </font>
     </property>
     <property name="autoFillBackground">
      <bool>true</bool>
@@ -325,8 +380,15 @@
        <x>270</x>
        <y>8</y>
        <width>120</width>
-       <height>20</height>
+       <height>22</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Montserrat</family>
+       <pointsize>8</pointsize>
+       <stylestrategy>PreferAntialias</stylestrategy>
+      </font>
      </property>
      <item>
       <property name="text">
@@ -375,8 +437,15 @@
        <x>270</x>
        <y>37</y>
        <width>120</width>
-       <height>20</height>
+       <height>22</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Montserrat</family>
+       <pointsize>8</pointsize>
+       <stylestrategy>PreferAntialias</stylestrategy>
+      </font>
      </property>
      <item>
       <property name="text">
@@ -400,8 +469,15 @@
        <x>270</x>
        <y>67</y>
        <width>120</width>
-       <height>20</height>
+       <height>22</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Montserrat</family>
+       <pointsize>8</pointsize>
+       <stylestrategy>PreferAntialias</stylestrategy>
+      </font>
      </property>
      <item>
       <property name="text">
@@ -419,7 +495,7 @@
       </property>
      </item>
     </widget>
-    <widget class="QLabel" name="CLabel1">
+    <widget class="QLabel" name="Label1">
      <property name="geometry">
       <rect>
        <x>210</x>
@@ -428,11 +504,16 @@
        <height>15</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <family>Montserrat</family>
+      </font>
+     </property>
      <property name="text">
-      <string>Resolucion</string>
+      <string>Resolución</string>
      </property>
     </widget>
-    <widget class="QLabel" name="CLabel2">
+    <widget class="QLabel" name="Label2">
      <property name="geometry">
       <rect>
        <x>210</x>
@@ -441,11 +522,16 @@
        <height>15</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <family>Montserrat</family>
+      </font>
+     </property>
      <property name="text">
       <string>FPS</string>
      </property>
     </widget>
-    <widget class="QLabel" name="CLabel3">
+    <widget class="QLabel" name="Label3">
      <property name="geometry">
       <rect>
        <x>210</x>
@@ -453,6 +539,11 @@
        <width>60</width>
        <height>15</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Montserrat</family>
+      </font>
      </property>
      <property name="text">
       <string>AudioRate</string>
@@ -466,6 +557,13 @@
        <width>180</width>
        <height>19</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Montserrat</family>
+       <pointsize>8</pointsize>
+       <stylestrategy>PreferAntialias</stylestrategy>
+      </font>
      </property>
      <property name="text">
       <string>Añadir Metadatos (MP3)</string>
@@ -483,6 +581,13 @@
        <height>19</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <family>Montserrat</family>
+       <pointsize>8</pointsize>
+       <stylestrategy>PreferAntialias</stylestrategy>
+      </font>
+     </property>
      <property name="text">
       <string>Añadir Caratula (MP3)</string>
      </property>
@@ -499,27 +604,15 @@
        <height>19</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <family>Montserrat</family>
+       <pointsize>8</pointsize>
+       <stylestrategy>PreferAntialias</stylestrategy>
+      </font>
+     </property>
      <property name="text">
       <string>Restrinción de Nombres</string>
-     </property>
-     <property name="checked">
-      <bool>true</bool>
-     </property>
-    </widget>
-    <widget class="QCheckBox" name="Odebg">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>210</x>
-       <y>203</y>
-       <width>180</width>
-       <height>19</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Debug</string>
      </property>
      <property name="checked">
       <bool>true</bool>
@@ -534,6 +627,11 @@
        <height>19</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <family>Montserrat</family>
+      </font>
+     </property>
      <property name="text">
       <string>Saltar Datos Basura (Youtube)</string>
      </property>
@@ -544,11 +642,17 @@
     <widget class="QPushButton" name="Brest">
      <property name="geometry">
       <rect>
-       <x>300</x>
-       <y>268</y>
-       <width>85</width>
+       <x>204</x>
+       <y>270</y>
+       <width>90</width>
        <height>25</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Montserrat</family>
+       <pointsize>9</pointsize>
+      </font>
      </property>
      <property name="styleSheet">
       <string notr="true">QPushButton {
@@ -563,8 +667,8 @@ background:#19232D;
       <string>Resetear</string>
      </property>
      <property name="icon">
-      <iconset resource="Icons.qrc">
-       <normaloff>:/icons/svg/cogs.svg</normaloff>:/icons/svg/cogs.svg</iconset>
+      <iconset resource="style.qrc">
+       <normaloff>:/style/Img/SVG/cogs.svg</normaloff>:/style/Img/SVG/cogs.svg</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -588,6 +692,13 @@ background:#19232D;
        <height>19</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <family>Montserrat</family>
+       <pointsize>8</pointsize>
+       <stylestrategy>PreferAntialias</stylestrategy>
+      </font>
+     </property>
      <property name="text">
       <string>Forzar Subtitulos</string>
      </property>
@@ -595,11 +706,17 @@ background:#19232D;
     <widget class="QPushButton" name="Bsave">
      <property name="geometry">
       <rect>
-       <x>210</x>
-       <y>268</y>
-       <width>85</width>
+       <x>302</x>
+       <y>270</y>
+       <width>90</width>
        <height>25</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Montserrat</family>
+       <pointsize>9</pointsize>
+      </font>
      </property>
      <property name="styleSheet">
       <string notr="true">QPushButton {
@@ -614,8 +731,8 @@ background:#19232D;
       <string>Guardar</string>
      </property>
      <property name="icon">
-      <iconset resource="Icons.qrc">
-       <normaloff>:/icons/svg/save.svg</normaloff>:/icons/svg/save.svg</iconset>
+      <iconset resource="style.qrc">
+       <normaloff>:/style/Img/SVG/save.svg</normaloff>:/style/Img/SVG/save.svg</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -636,6 +753,11 @@ background:#19232D;
        <height>140</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <family>Montserrat</family>
+      </font>
+     </property>
      <property name="autoFillBackground">
       <bool>false</bool>
      </property>
@@ -651,6 +773,11 @@ background:#19232D;
         <height>21</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>Montserrat</family>
+       </font>
+      </property>
       <property name="placeholderText">
        <string>Usuario</string>
       </property>
@@ -664,6 +791,11 @@ background:#19232D;
         <height>21</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>Montserrat</family>
+       </font>
+      </property>
       <property name="echoMode">
        <enum>QLineEdit::Password</enum>
       </property>
@@ -671,7 +803,7 @@ background:#19232D;
        <string>Contraseña</string>
       </property>
      </widget>
-     <widget class="QLabel" name="CLabel5">
+     <widget class="QLabel" name="Licon1">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -682,6 +814,7 @@ background:#19232D;
       </property>
       <property name="font">
        <font>
+        <family>Montserrat</family>
         <pointsize>10</pointsize>
         <weight>75</weight>
         <bold>true</bold>
@@ -691,13 +824,13 @@ background:#19232D;
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap resource="Icons.qrc">:/icons/svg/user-circle.svg</pixmap>
+       <pixmap resource="style.qrc">:/style/Img/SVG/user-circle.svg</pixmap>
       </property>
       <property name="scaledContents">
        <bool>true</bool>
       </property>
      </widget>
-     <widget class="QLabel" name="CLabel6">
+     <widget class="QLabel" name="Label5">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -706,6 +839,12 @@ background:#19232D;
         <height>16</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>Montserrat</family>
+        <pointsize>7</pointsize>
+       </font>
+      </property>
       <property name="text">
        <string>La información se borra al reinicio</string>
       </property>
@@ -713,7 +852,7 @@ background:#19232D;
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="CLabel4">
+     <widget class="QLabel" name="Llogttle">
       <property name="geometry">
        <rect>
         <x>40</x>
@@ -724,6 +863,7 @@ background:#19232D;
       </property>
       <property name="font">
        <font>
+        <family>Montserrat</family>
         <pointsize>10</pointsize>
         <weight>75</weight>
         <bold>true</bold>
@@ -733,7 +873,7 @@ background:#19232D;
        <string>Cuenta de Usuario</string>
       </property>
      </widget>
-     <widget class="QLabel" name="CLabel7">
+     <widget class="QLabel" name="Llinfo">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -741,6 +881,11 @@ background:#19232D;
         <width>170</width>
         <height>20</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Montserrat</family>
+       </font>
       </property>
       <property name="text">
        <string/>
@@ -750,14 +895,20 @@ background:#19232D;
       </property>
      </widget>
     </widget>
-    <widget class="QPushButton" name="Bupdt">
+    <widget class="QPushButton" name="Bwebc">
      <property name="geometry">
       <rect>
-       <x>110</x>
-       <y>268</y>
-       <width>95</width>
+       <x>106</x>
+       <y>270</y>
+       <width>90</width>
        <height>25</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Montserrat</family>
+       <pointsize>9</pointsize>
+      </font>
      </property>
      <property name="styleSheet">
       <string notr="true">QPushButton {
@@ -769,11 +920,11 @@ background:#19232D;
 </string>
      </property>
      <property name="text">
-      <string>Actualizar DL</string>
+      <string>Avanzado</string>
      </property>
      <property name="icon">
-      <iconset resource="Icons.qrc">
-       <normaloff>:/icons/svg/cloud-download-alt.svg</normaloff>:/icons/svg/cloud-download-alt.svg</iconset>
+      <iconset resource="style.qrc">
+       <normaloff>:/style/Img/SVG/wrench.svg</normaloff>:/style/Img/SVG/wrench.svg</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -788,11 +939,17 @@ background:#19232D;
     <widget class="QPushButton" name="Babut">
      <property name="geometry">
       <rect>
-       <x>15</x>
-       <y>268</y>
+       <x>8</x>
+       <y>270</y>
        <width>90</width>
        <height>25</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Montserrat</family>
+       <pointsize>9</pointsize>
+      </font>
      </property>
      <property name="styleSheet">
       <string notr="true">QPushButton {
@@ -807,8 +964,8 @@ background:#19232D;
       <string>Acerca De</string>
      </property>
      <property name="icon">
-      <iconset resource="Icons.qrc">
-       <normaloff>:/icons/svg/at.svg</normaloff>:/icons/svg/at.svg</iconset>
+      <iconset resource="style.qrc">
+       <normaloff>:/style/Img/SVG/at.svg</normaloff>:/style/Img/SVG/at.svg</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -829,6 +986,13 @@ background:#19232D;
        <height>19</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <family>Montserrat</family>
+       <pointsize>8</pointsize>
+       <stylestrategy>PreferAntialias</stylestrategy>
+      </font>
+     </property>
      <property name="text">
       <string>Auto Analizar y Limpiar URL</string>
      </property>
@@ -845,6 +1009,13 @@ background:#19232D;
        <height>19</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <family>Montserrat</family>
+       <pointsize>8</pointsize>
+       <stylestrategy>PreferAntialias</stylestrategy>
+      </font>
+     </property>
      <property name="text">
       <string>Auto Nombre y Formato</string>
      </property>
@@ -860,6 +1031,13 @@ background:#19232D;
        <width>190</width>
        <height>20</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Montserrat</family>
+       <pointsize>8</pointsize>
+       <stylestrategy>PreferAntialias</stylestrategy>
+      </font>
      </property>
      <property name="text">
       <string>Extraer Lista de Reproducción</string>
@@ -880,6 +1058,13 @@ background:#19232D;
        <height>19</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <family>Montserrat</family>
+       <pointsize>8</pointsize>
+       <stylestrategy>PreferAntialias</stylestrategy>
+      </font>
+     </property>
      <property name="text">
       <string>Marcar Visto (Youtube)</string>
      </property>
@@ -898,6 +1083,11 @@ background:#19232D;
        <width>190</width>
        <height>19</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Montserrat</family>
+      </font>
      </property>
      <property name="text">
       <string>Forzar Metadatos a Videos (MKV)</string>
@@ -921,6 +1111,13 @@ background:#19232D;
        <height>19</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <family>Montserrat</family>
+       <pointsize>8</pointsize>
+       <stylestrategy>PreferAntialias</stylestrategy>
+      </font>
+     </property>
      <property name="text">
       <string>Modo Album</string>
      </property>
@@ -928,7 +1125,7 @@ background:#19232D;
       <bool>false</bool>
      </property>
     </widget>
-    <widget class="QLabel" name="CLabel8">
+    <widget class="QLabel" name="Label4">
      <property name="geometry">
       <rect>
        <x>210</x>
@@ -936,6 +1133,11 @@ background:#19232D;
        <width>60</width>
        <height>20</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Montserrat</family>
+      </font>
      </property>
      <property name="text">
       <string>Sub Idiom.</string>
@@ -947,8 +1149,15 @@ background:#19232D;
        <x>270</x>
        <y>97</y>
        <width>120</width>
-       <height>20</height>
+       <height>22</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Montserrat</family>
+       <pointsize>8</pointsize>
+       <stylestrategy>PreferAntialias</stylestrategy>
+      </font>
      </property>
      <item>
       <property name="text">
@@ -968,16 +1177,24 @@ background:#19232D;
     </property>
     <property name="geometry">
      <rect>
-      <x>380</x>
-      <y>230</y>
+      <x>0</x>
+      <y>380</y>
       <width>380</width>
       <height>260</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>Montserrat</family>
+      <pointsize>8</pointsize>
+      <stylestrategy>PreferAntialias</stylestrategy>
+      <kerning>false</kerning>
+     </font>
+    </property>
     <property name="autoFillBackground">
      <bool>true</bool>
     </property>
-    <widget class="QLabel" name="Alabel0">
+    <widget class="QLabel" name="Ltitle">
      <property name="geometry">
       <rect>
        <x>40</x>
@@ -988,9 +1205,12 @@ background:#19232D;
      </property>
      <property name="font">
       <font>
+       <family>Montserrat</family>
        <pointsize>12</pointsize>
        <weight>75</weight>
        <bold>true</bold>
+       <stylestrategy>PreferAntialias</stylestrategy>
+       <kerning>false</kerning>
       </font>
      </property>
      <property name="text">
@@ -1003,16 +1223,20 @@ background:#19232D;
     <widget class="QLabel" name="Alabel1">
      <property name="geometry">
       <rect>
-       <x>36</x>
+       <x>28</x>
        <y>80</y>
-       <width>50</width>
+       <width>60</width>
        <height>15</height>
       </rect>
      </property>
      <property name="font">
       <font>
+       <family>Montserrat</family>
+       <pointsize>8</pointsize>
        <weight>75</weight>
        <bold>true</bold>
+       <stylestrategy>PreferAntialias</stylestrategy>
+       <kerning>false</kerning>
       </font>
      </property>
      <property name="cursor">
@@ -1034,16 +1258,20 @@ background:#19232D;
     <widget class="QLabel" name="Alabel2">
      <property name="geometry">
       <rect>
-       <x>122</x>
+       <x>116</x>
        <y>80</y>
-       <width>50</width>
+       <width>60</width>
        <height>15</height>
       </rect>
      </property>
      <property name="font">
       <font>
+       <family>Montserrat</family>
+       <pointsize>8</pointsize>
        <weight>75</weight>
        <bold>true</bold>
+       <stylestrategy>PreferAntialias</stylestrategy>
+       <kerning>false</kerning>
       </font>
      </property>
      <property name="cursor">
@@ -1062,16 +1290,20 @@ background:#19232D;
     <widget class="QLabel" name="Alabel3">
      <property name="geometry">
       <rect>
-       <x>208</x>
+       <x>204</x>
        <y>80</y>
-       <width>50</width>
+       <width>60</width>
        <height>15</height>
       </rect>
      </property>
      <property name="font">
       <font>
+       <family>Montserrat</family>
+       <pointsize>8</pointsize>
        <weight>75</weight>
        <bold>true</bold>
+       <stylestrategy>PreferAntialias</stylestrategy>
+       <kerning>false</kerning>
       </font>
      </property>
      <property name="cursor">
@@ -1096,6 +1328,11 @@ background:#19232D;
        <height>100</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <family>Montserrat</family>
+      </font>
+     </property>
      <property name="text">
       <string>Jackestar 2020
 
@@ -1117,6 +1354,11 @@ Descarga Audio Video o Subtitulo de mas de 750 Sitios Web Configura la calidad y
        <height>20</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <family>Montserrat</family>
+      </font>
+     </property>
      <property name="styleSheet">
       <string notr="true">QPushButton {
 background:#337;
@@ -1136,11 +1378,16 @@ background:#19232D;
     <widget class="QLabel" name="IAlabel1">
      <property name="geometry">
       <rect>
-       <x>46</x>
+       <x>43</x>
        <y>50</y>
        <width>30</width>
        <height>30</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Montserrat</family>
+      </font>
      </property>
      <property name="cursor">
       <cursorShape>PointingHandCursor</cursorShape>
@@ -1149,7 +1396,7 @@ background:#19232D;
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="Icons.qrc">:/icons/svg/github.svg</pixmap>
+      <pixmap resource="style.qrc">:/style/Img/SVG/github.svg</pixmap>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
@@ -1164,11 +1411,16 @@ background:#19232D;
     <widget class="QLabel" name="IAlabel2">
      <property name="geometry">
       <rect>
-       <x>132</x>
+       <x>131</x>
        <y>50</y>
        <width>30</width>
        <height>30</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Montserrat</family>
+      </font>
      </property>
      <property name="cursor">
       <cursorShape>PointingHandCursor</cursorShape>
@@ -1177,7 +1429,7 @@ background:#19232D;
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="Icons.qrc">:/icons/svg/at.svg</pixmap>
+      <pixmap resource="style.qrc">:/style/Img/SVG/at.svg</pixmap>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
@@ -1189,11 +1441,16 @@ background:#19232D;
     <widget class="QLabel" name="IAlabel3">
      <property name="geometry">
       <rect>
-       <x>218</x>
+       <x>219</x>
        <y>50</y>
        <width>30</width>
        <height>30</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Montserrat</family>
+      </font>
      </property>
      <property name="cursor">
       <cursorShape>PointingHandCursor</cursorShape>
@@ -1202,7 +1459,7 @@ background:#19232D;
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="Icons.qrc">:/icons/svg/info-circle.svg</pixmap>
+      <pixmap resource="style.qrc">:/style/Img/SVG/info-circle.svg</pixmap>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
@@ -1214,16 +1471,20 @@ background:#19232D;
     <widget class="QLabel" name="Alabel5">
      <property name="geometry">
       <rect>
-       <x>294</x>
+       <x>292</x>
        <y>80</y>
-       <width>50</width>
+       <width>60</width>
        <height>15</height>
       </rect>
      </property>
      <property name="font">
       <font>
+       <family>Montserrat</family>
+       <pointsize>8</pointsize>
        <weight>75</weight>
        <bold>true</bold>
+       <stylestrategy>PreferAntialias</stylestrategy>
+       <kerning>false</kerning>
       </font>
      </property>
      <property name="cursor">
@@ -1242,11 +1503,16 @@ background:#19232D;
     <widget class="QLabel" name="IAlabel5">
      <property name="geometry">
       <rect>
-       <x>304</x>
+       <x>307</x>
        <y>50</y>
        <width>30</width>
        <height>30</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Montserrat</family>
+      </font>
      </property>
      <property name="cursor">
       <cursorShape>PointingHandCursor</cursorShape>
@@ -1258,7 +1524,7 @@ background:#19232D;
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="Icons.qrc">:/icons/svg/envelope.svg</pixmap>
+      <pixmap resource="style.qrc">:/style/Img/SVG/envelope.svg</pixmap>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
@@ -1270,11 +1536,16 @@ background:#19232D;
     <widget class="QPushButton" name="LKgit">
      <property name="geometry">
       <rect>
-       <x>36</x>
+       <x>28</x>
        <y>45</y>
-       <width>50</width>
+       <width>60</width>
        <height>50</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Montserrat</family>
+      </font>
      </property>
      <property name="cursor">
       <cursorShape>PointingHandCursor</cursorShape>
@@ -1290,11 +1561,16 @@ border:none;</string>
     <widget class="QPushButton" name="LKweb">
      <property name="geometry">
       <rect>
-       <x>122</x>
+       <x>116</x>
        <y>45</y>
-       <width>50</width>
+       <width>60</width>
        <height>50</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Montserrat</family>
+      </font>
      </property>
      <property name="cursor">
       <cursorShape>PointingHandCursor</cursorShape>
@@ -1310,11 +1586,16 @@ border:none;</string>
     <widget class="QPushButton" name="LKdoc">
      <property name="geometry">
       <rect>
-       <x>208</x>
+       <x>204</x>
        <y>45</y>
-       <width>50</width>
+       <width>60</width>
        <height>50</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Montserrat</family>
+      </font>
      </property>
      <property name="cursor">
       <cursorShape>PointingHandCursor</cursorShape>
@@ -1330,11 +1611,16 @@ border:none;</string>
     <widget class="QPushButton" name="LKmal">
      <property name="geometry">
       <rect>
-       <x>294</x>
+       <x>292</x>
        <y>45</y>
-       <width>50</width>
+       <width>60</width>
        <height>50</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Montserrat</family>
+      </font>
      </property>
      <property name="cursor">
       <cursorShape>PointingHandCursor</cursorShape>
@@ -1351,10 +1637,344 @@ border:none;</string>
      </property>
     </widget>
    </widget>
+   <widget class="QWidget" name="Prox_Updt" native="true">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>400</width>
+      <height>300</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Montserrat</family>
+     </font>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <widget class="QPushButton" name="pushButton">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>270</y>
+       <width>131</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Montserrat</family>
+       <pointsize>9</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background:#a25;</string>
+     </property>
+     <property name="text">
+      <string>Actualizar</string>
+     </property>
+     <property name="icon">
+      <iconset resource="style.qrc">
+       <normaloff>:/style/Img/SVG/cloud-download-alt.svg</normaloff>:/style/Img/SVG/cloud-download-alt.svg</iconset>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="Bout">
+     <property name="geometry">
+      <rect>
+       <x>310</x>
+       <y>270</y>
+       <width>80</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Montserrat</family>
+       <pointsize>9</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background:#22a;</string>
+     </property>
+     <property name="text">
+      <string>Aceptar</string>
+     </property>
+    </widget>
+    <widget class="QWidget" name="Wupdt" native="true">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>180</width>
+       <height>240</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Montserrat</family>
+      </font>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background:#000;</string>
+     </property>
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>-2</y>
+        <width>125</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Montserrat</family>
+        <pointsize>11</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Actualizaciones</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="Ouydl">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>150</y>
+        <width>160</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>YoutubeDL (Recomendado)</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="Ouffm">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>190</y>
+        <width>160</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>FFMpeg</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="Ouvrd">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>29</x>
+        <y>170</y>
+        <width>141</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Vredist 2010</string>
+      </property>
+      <property name="checked">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="Ouwgt">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>210</y>
+        <width>160</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Wget</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="Rbrec">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>40</y>
+        <width>150</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Recomendada</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="Rbper">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>60</y>
+        <width>150</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Personalizada</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="Oucor">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>130</y>
+        <width>160</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>DL-JS (Core)</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="Oresp">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>90</y>
+        <width>160</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Hacer Respaldos</string>
+      </property>
+      <property name="checked">
+       <bool>false</bool>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="Wproxy" native="true">
+     <property name="geometry">
+      <rect>
+       <x>200</x>
+       <y>10</y>
+       <width>180</width>
+       <height>101</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Montserrat</family>
+      </font>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background:#111;</string>
+     </property>
+     <widget class="QLineEdit" name="Lproxy">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>30</y>
+        <width>161</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="inputMask">
+       <string/>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_2">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>-4</y>
+        <width>50</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Montserrat</family>
+        <pointsize>11</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Proxy</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QCheckBox" name="Odebg">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>200</x>
+       <y>120</y>
+       <width>180</width>
+       <height>19</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Montserrat</family>
+       <pointsize>8</pointsize>
+       <stylestrategy>PreferAntialias</stylestrategy>
+      </font>
+     </property>
+     <property name="text">
+      <string>Debug</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </widget>
   </widget>
  </widget>
  <resources>
-  <include location="Icons.qrc"/>
+  <include location="style.qrc"/>
  </resources>
  <connections/>
 </ui>

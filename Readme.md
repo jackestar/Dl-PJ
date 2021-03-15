@@ -1,12 +1,10 @@
-# DL-JS
+# DL-JS:musical_note::movie_camera::page_facing_up:
 
-**Interfaz Grafica No Oficial Para Youtube-DL**
+**Interfaz Grafica No Oficial Para Youtube-DL**​
 
 *Status: Beta* :ballot_box_with_check:
 
-AppVeyor [![Build status](https://ci.appveyor.com/api/projects/status/g905rwfg0n72cyfm?svg=true)](https://ci.appveyor.com/project/jackestar/dl-pj)
-
-
+AppVeyor
 
 ~~Travis~~
 
@@ -14,70 +12,76 @@ AppVeyor [![Build status](https://ci.appveyor.com/api/projects/status/g905rwfg0n
 
 ## Descripción
 
-Interfaz Grafica no oficial de QT para YoutubeDL, Descarga de [mas de 700 paginas diferentes](jackestar.netlify.app/list.html) En el formato y calidad que quieras, inicia sesión y baja tus videos de tu cuenta, o baja listas de reproducción incluso hasta canales completos.
+Interfaz Grafica no oficial en QT para YoutubeDL, Descarga de [mas de 700 paginas diferentes](jackestar.netlify.app/list.html) En el formato y calidad que quieras, inicia sesión y baja tus videos de tu cuenta, o baja listas de reproducción incluso hasta canales completos.
 
-Escrito en C++ usando el framework de QT, el motor de descarga YoutubeDL, FFmpeg y Wget se busca simplificar principalmente el gran motor de descarga que es YoutubeDL en toda su capacidad para todo usuario, Tratando de resolver la problematica de las paginas de descargas inseguras, limitativas y con publicidad trayendo una aplicacion de escritorio sencilla y para todo usuario.
+Escrito en C++ usando el framework de QT, el motor de descarga YoutubeDL, FFmpeg y Wget se busca simplificar principalmente el gran motor de descarga que es YoutubeDL en toda su capacidad para todo usuario, Tratando de resolver la problemática de las paginas de descargas inseguras, limitativas y con publicidad trayendo una aplicación de escritorio sencilla y para todo usuario.
 
-**Compilación**
+**Compilación**:building_construction:
 
 ​	*Windows*
 
-Con QT Creator (:heavy_check_mark:Testeado en 4.12.2) se selecciona el archivo proyecto "DL_JS_Lis.pro" se configura los compiladores (:heavy_check_mark:Testeado en MinGWin 4.3.4/GCC 7.2.0 32&64) y se compila en codigo. Luego se aplica Qt Deploy Tool (:heavy_check_mark:Testeado en 5.12.9) por consola, Eg.`windeployqt.exe --release --no-opengl-sw --no-system-d3d-compiler --no-translations DL-JS_Lis.exe` para añadir las librerias de qt requeridas y por ultimo se añade youtubeDL y FFmpeg junto al ejecutable.
+Con QT Creator (:heavy_check_mark:Testeado en 4.12.2) se selecciona el archivo proyecto "DL_JS_Lis.pro" se configura los compiladores (:heavy_check_mark:Testeado en MinGWin 4.3.4/GCC 7.2.0 32&64) y se compila en código. Luego se aplica Qt Deploy Tool (:heavy_check_mark:Testeado en 5.12.9) por consola, Eg.`windeployqt.exe --release --no-opengl-sw --no-system-d3d-compiler --no-translations DL-JS_Lis.exe` para añadir las librerías de qt requeridas y por ultimo se añade youtubeDL y FFmpeg junto al ejecutable.
 
-Tambien se puede hacer manualmente con QMake
+También se puede hacer manualmente con QMake
 
-**Como Usar**
+**Como Usar**:man_student:
 
 Toda la información de uso esta en la [pagina oficial del proyecto](jackestar.netlify.app/HowTo)
 
-**Plataformas**
+**Plataformas**:computer::desktop_computer::mobile_phone_off:
 
 - Windows 7 (Con librerías incluidas)
-- Linux (En desarollo)
+- Linux (En desarrollo)
 - Mac (En desarrollo - Sin testeo a fondo)
 - Android (Futuro Port)
 
-**Traducciones**
+**Traducciones**:world_map:
 
-*estado:* :ballot_box_with_check:Español	:white_check_mark:Español	:grey_question:Frances
+*estado:* :ballot_box_with_check:Español	:white_check_mark:Ingles	:grey_question:Frances
 
 ​	*Windows*
 
-En la carpeta "translations" se encuentran las traducciones actualemente hechas con la siguiente nomenclatura "DL-JS_lis_esp.qm" simplemente se copia la traducción deseada ala carpeta del ejecutable y se inicia. Hay otros aspectos que se preconfiguran sin necesidad de los archivos de traducción como el idioma de los subtitulos, etc.
+En la carpeta "translations" se encuentran las traducciones actualmente hechas con la siguiente nomenclatura "DL-JS_lis_esp.qm" simplemente se copia la traducción deseada ala carpeta del ejecutable y se inicia. Hay otros aspectos que se preconfiguran sin necesidad de los archivos de traducción como el idioma de los subtítulos, etc.
 
 Se ha de destacar que el programa esta hecho nativamente en español
 
-De necesitar otra traducción se pueden crear con Qt Linguist (:heavy_check_mark:Testeado en 5.12.9) bajando el codigo de el repocitorio de [github](https://github.com/jackestar/Dl-PJ/) y creando una nueva traducción. Actualmente el desarrollo esta enfocado en alcanzar la estabilidad del programa, y automatizar procesos, mas se tiene de objetivo tene un alta cantidad de traducciones
+De necesitar otra traducción se pueden crear con Qt Linguist (:heavy_check_mark:Testeado en 5.12.9) bajando el código de el repositorio de [github](https://github.com/jackestar/Dl-PJ/) y creando una nueva traducción. Actualmente el desarrollo esta enfocado en alcanzar la estabilidad del programa, y automatizar procesos, mas se tiene de objetivo tiene un alta cantidad de traducciones
 
-**Caracteristicas**
+**Características**:heavy_check_mark:
 
-:ballot_box_with_check:Descarga De Audio Video y Subtitulos
+:ballot_box_with_check:Descarga De Audio Video y Subtítulos
 
-:ballot_box_with_check:Subtitulos Embedidos (Automatico en Crunchyroll)
+:ballot_box_with_check:Subtítulos Embebidos (Automático en Crunchyroll)
+
+:ballot_box_with_check:Selección Nativa para Salida de Nombre y Formato
 
 :ballot_box_with_check:Login
 
 :ballot_box_with_check:Descarga Listas de reproducción / Canales / Usuarios / Lista de Listas
 
-:ballot_box_with_check:Multi lenguage (Ingles, Español, +)
+:ballot_box_with_check:Multi lenguaje (Ingles, Español, +)
 
-:negative_squared_cross_mark:Actualizacion (FFMpeg - YoutubeDL - Core)
+☑️Proxy configurable
 
-**Caracteristicas Futuras**
+:white_check_mark:Configuración Para modo Álbum
 
-* Configurarcion para Proxies para youtubeDL y Wget (DL-Net)
+:negative_squared_cross_mark: Actualización (FFMpeg - YoutubeDL - Core)
+
+**Características Futuras**:clock1:
+
+* Wget (DL-Net)
 * Ventana Escalable
-* Eliminacion de la consola
-* Modo debug/Vercion Debug
+* Eliminación de la consola
+* Modo debug/Verción Debug
 * AutoBuilds
-* Adición de otro motor de descarga
+* Adición de otros motores de descarga
 * Mas Ports y Traducciones
 
-**Requistos**
+**Requisitos**:paperclip:
 
-Windows 7 (Visual C++ Reidstibutable 2010 x86) 
+Windows 7 (Visual C++ Reidistibutable 2010 x86) 
 
-**Copyright**
+**Copyright**:copyright:
 
 *Licencia*
 

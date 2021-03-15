@@ -1,9 +1,9 @@
 #ifndef PRECONFQT_HPP
-#define PRECONFQT_HPP
+  #define PRECONFQT_HPP
 
 #endif // PRECONFQT_HPP
 
-//	Define dependencia absoluta de FFmpeg
+// Define dependencia absoluta de FFmpeg
 #ifdef MMPEG_NEED
 # define MMPEG_N true
 #else
@@ -17,21 +17,24 @@
 # define MMPEG_A false
 #endif
 
-#include <QString>
-//#include "Strings_Langs.hpp"
-using namespace std;
+//using namespace std;
+
+#ifndef LangStrings_HPP
+#include "LangStrings.hpp"
+#endif
 
 typedef unsigned short int MinInt;
 
 inline const char* toCharString(QString String);
 
-MinInt Start(void); //Detecta youtubeDL y FFmpeg
-QString URLanlz (QString URL, bool config[]); // Limpeza de URL
-QString URLanlz (QString URL);  //WebSite Name
-QString Config (char config[]); // Argumentos de DL
-bool Execut (QString URLanlz, QString &Config); //Ejecucion de DL
-bool Updte (MinInt Type);
+MinInt Start(void);                             // Deteccion de componentes
+QString URLanlz (QString URL, bool config[]);   // Limpeza de URL
+QString URLanlz (QString URL);                  // WebSite Name
+QString Config (char config[]);                 // Argumentos para DL
+bool Execut (QString URLanlz, QString &Config); // Ejecucion de DL
 
+//SO Variants
+MinInt Updte (MinInt Type = 0);
 
 inline const char* toCharString(QString String) { // inline para trasformar de QString
     QByteArray tst = String.toLocal8Bit();
@@ -92,7 +95,7 @@ else {
 
 QString Config (char config[]) {
   QString Ret;
-  Ret = "-f \"";
+  Ret = " -f \"";
   switch (config[0]) {
     case 'a':
     Ret += "(bestaudio)";
@@ -211,9 +214,9 @@ QString Config (char config[]) {
       case '2':
       Ret+= " --console-title --no-continue --ignore-errors"; // No continua a archivos prciales
       break;
-      case '3':
-      Ret+= " -o \"%(title)s.%(ext)s\""; // Titulo Predet
-      break;
+//      case '3':
+//      Ret+= " -o \"%(title)s.%(ext)s\""; // Titulo Predet
+//      break;
       case '/':
       Ret+= " --embed-subs";
       break;
@@ -259,11 +262,32 @@ QString Config (char config[]) {
   return Ret;
 }
 
-#define DLexe ".\\youtube-dl.exe "
 #ifndef ConDebug
 # define Debug false
 #else
 # define Debug true
+#endif
+
+#ifdef Q_OS_WIN
+  #ifdef Q_PROCESSOR_ARM
+    #error "Aun No Compatible Con Procesadores ARM (Posibilidad no muy brillante)"
+  #endif
+
+  #include <QFile>
+  #include "Win/Run.hpp"
+
+
+#elif defined Q_OS_LINUX
+  #error "Vercion en dessarrollo Aun no Terminado"
+#include "Lin/Run.hpp"
+
+#elif defined Q_OS_MACOS
+  #error "Vercion en dessarrollo Aun no Terminado"
+#include "Lin/Run.hpp"
+
+#elif defined Q_OS_ANDROID
+  #error "Vercion en dessarrollo Aun no Terminado"
+
 #endif
 
 // retorna en 0 si se ejecuto correntamente
@@ -271,24 +295,21 @@ bool Execut (QString URLanlz, QString &Config) {
       QString comandoA = DLexe + Config + " " + URLanlz;
       Config = comandoA;
       bool resul = system(toCharString(comandoA));
-      if (resul) system("color 4 && echo ///////// Completo /////////");
-      else system("color 2 && echo ///////// Error /////////");
+			if (resul) system(toCharString("color 4 && echo ///////// "+LangString[1]+" /////////"));
+			else system(toCharString("color 2 && echo ///////// "+LangString[0]+" /////////"));
       return resul;
 }
 
-#include <fstream>
 MinInt Start(void) {
-  ifstream ydl;
+  QFile ydl((DLexe));
   MinInt Ret = 0;
-  ydl.open("./youtube-dl.exe");
-  if (!ydl.fail()) {
+  if (ydl.exists()) {
     Ret += 1;
     ydl.close();
   }
   if (MMPEG_A || MMPEG_N) {
-      ifstream mpg;
-      mpg.open("./ffmpeg.exe");
-      if (!mpg.fail()) Ret += 2;
+      QFile mpg(FFMpegExe);
+      if (mpg.exists()) Ret += 2;
       else if (MMPEG_N) Ret = 0;
       mpg.close();
   }
@@ -297,33 +318,19 @@ MinInt Start(void) {
       //1 = Se Encontro Youtube DL
       //2 = Solo se Encontro FFMpeg (Advertencia)
       //3 = Se encontro DL y FFMpeg
-}
-#include <QFile>
-#include <iostream>
-bool Updte (MinInt Type = 0) {
-  /*
-  0 Uptdate all and Clean (by default)
-  1 Update DL
-  2 Update FFmpeg
-  3 Update DL-JS (From Actions LIst Server) (To Do)
-  4 Clean
-  */
 
-if (Type == 0) {
-  system(".\\bin\\wget.exe -o \"..\\youtube-dl.exe\" -q https://youtube-dl.org/downloads/latest/youtube-dl.exe");
-  system(".\\bin\\wget.exe -o \"..\\ffmpeg-release-essentials.7z\" -q https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.7z");
-
-  QFile file("\"%ProgramFiles%\\7-Zip\\7z.exe\\\"");
-  if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-    if  (system("\"%ProgramFiles%\\7-Zip\\7z.exe\" -aoa e ./ffmpeg-*.7z ffmpeg.exe -r")) cout<<"Error al descomprimir\n";
-      else {
-        QFile file2("\"%ProgramFiles%\\WinRAR\\rar.exe\\\"");
-        if (file2.open(QIODevice::ReadOnly | QIODevice::Text)) {
-            if  (system("\"%ProgramFiles%\\WinRAR\\winrar.exe\" e ./ffmpeg-release-essentials.7z -r ffmpeg*exe")) cout<<"Error al descomprimir\n";
-        } else cout<<"7Zip? WinRar?";
-  }
-  if (system("del *.old ffmpeg-*.7z")) cout<<"Error";
-  }
-}
-return 0;
+  //Reforma
+    //=0  Inicial 
+    //+1  FFMpeg
+    //+2  Wget
+    //+4  youtubeDL
+    //+8  Visual Studio C
+      //0 = No Se Puede ejectar la aplicacion       (exit)
+      //1 = Solo se encuentra FFMpeg                (In operable)
+      //2 = Solo se encuentra Wget                  (in operable)
+      //3 = Solo se encuentra FFMpeg y Wget         (In opereble/Actualizable)
+      //4 = Se encontro YoutubeDL                   (Operable/Limitante)
+      //5 = Se encontro YoutubeDL y FFmpeg          (Opereble)
+      //6 = Se encontro YoutubeDL y Wget            (Operable/Limitante/Actualizable)
+      //7 = Se encontro Todas las caracteristicas   (Full Operacion/Actualizable)
 }

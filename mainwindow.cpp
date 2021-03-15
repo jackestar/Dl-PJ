@@ -4,9 +4,14 @@
 // Predefinidos para Libreira
 #define MMPEG
 #define ConDebug
-#include "PreconfQT.hpp"
 
-QString LangString[15];
+#ifndef PRECONFQT_HPP
+#include "PreconfQT.hpp"
+#endif
+
+#ifndef LangStrings_HPP
+#include "LangStrings.hpp"
+#endif
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) , ui(new Ui::MainWindow) {
   ui->setupUi(this);
@@ -14,27 +19,27 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) , ui(new Ui::MainW
 
   if (MainWindow::GetIdiom()) {
     ui->Status->setText("Traducción no disponible");
-    ui->Report->setText("La aplicación no tiene soporte para el idioma "+LangString[10]+" La aplicación pasa al Español por defecto");
+    ui->Report->setText("La aplicación no tiene soporte para el idioma "+LangString[10]+" .La aplicación pasa al Español por defecto");
   }
 
+  // Lang Sub Inde
   if (LangString[10] == "Spanish") ui->SLang->setCurrentIndex(0);
   else if (LangString[10] == "English") ui->SLang->setCurrentIndex(1);
 
   // Establecer Estilos
-  QFile f(":qdarkstyle/style.qss");
-  if (!f.exists())  {
-    ui->Status->setText(LangString[1]);
-} else   {
+  QFile f(":style/style.qss");
+  if (!f.exists()) ui->Status->setText(LangString[1]);
+  else {
       f.open(QFile::ReadOnly | QFile::Text);
       QTextStream ts(&f);
       qApp->setStyleSheet(ts.readAll());
   }
 
-
   IStart();
   ui->ConfigW->move(400,300);
   ui->Fabot->move(400,300);
-  system("title DL-JS Consola && color 3 && cls");
+  ui->Prox_Updt->move(400,300);
+  system(toCharString("title DL-JS "+tr("Consola")+" && color 3 && cls"));
 }
 
 MainWindow::~MainWindow() {
@@ -47,13 +52,12 @@ void MainWindow::Iniz2 (const bool FileNameBool,const MinInt& Mode,QString FileN
   MinInt Estate = Start();
   char PrConfg[16] = "...............";
 
-  if (Mode==1) PrConfg[0] = 'a';               //best a
-  else if (Mode==2) {
-      if (Estate == 1) PrConfg[0] = 'b';       //best
-      else if (Estate == 3) PrConfg[0] = '&';  //best v+a
-  } else if (Mode==3) {
-    PrConfg[0] = '#'; // Por descarte          //worst
-  }
+    //Modo
+  if (Mode == 1) PrConfg[0] = 'a';               // Best A
+  else if (Mode == 2) {
+      if (Estate == 1) PrConfg[0] = 'b';       // Best
+      else if (Estate == 3) PrConfg[0] = '&';  // Best A+V
+  } else if (Mode == 3) PrConfg[0] = '#';        // Worst por descarte
 
   if (Mode!=3) {
     switch (ui->AAdR->currentIndex()) { // Audio rate
@@ -106,8 +110,8 @@ void MainWindow::Iniz2 (const bool FileNameBool,const MinInt& Mode,QString FileN
       default:
         PrConfg[2] = ' ';
         break;
-    }
-  }
+     }
+   }
  }
 
   QString WebName = URLanlz(ui->URL->text()).toLower();
@@ -134,24 +138,24 @@ void MainWindow::Iniz2 (const bool FileNameBool,const MinInt& Mode,QString FileN
   bool URLc[3] = {false,false};
   if (WebName.contains("youtube")) {
     if (ui->Osydt->isChecked()) PrConfg[7] = '5';   // Youtube Manifest
-    if (ui->Ovsto->isChecked()) PrConfg[14] = '%';   // Marcar Visto
-//    if (Mode == 1) URLc[0] = true;                  // Auto music.youtube.com
+    if (ui->Ovsto->isChecked()) PrConfg[14] = '%';  // Marcar Visto
   }
   bool MetaAsing = ((Mode == 1 && Estate == 3) || (ui->Ofzmt->isChecked() && Mode != 3));
   if (Mode == 1 && Estate == 3 && FileNameBool == false ) PrConfg[9] = '6'; // Audio Mp3 Best
   if (ui->Otumb->isChecked() && MetaAsing) PrConfg[10] = '7'; //Tumbl
   if (ui->Ometa->isChecked() && MetaAsing) PrConfg[11] = '8'; //Meta
   if (Mode == 3) PrConfg[15] = '9';               //Skip dowload 4 sub
-  ui->Progress->setValue(25);
-
   if (ui->Oelst->isChecked()) PrConfg[12] = '(';  //Playlist
   else if (ui->Ourla->isChecked()) URLc[1] = true;     //Analizar URL
 
-  QString Conf = Config(PrConfg);
-  if (!(ui->Lpass->text().isEmpty())) { // Descartada doble verificación
-    Conf +=" -u \"" + ui->Luser->text() +"\" -p \"";
-    Conf += ui->Lpass->text()+"\"";
+  ui->Progress->setValue(25);
 
+  QString Conf = Config(PrConfg);
+
+  //Configuración de Usuario
+  if (!(ui->Lpass->text().isEmpty())) { // Descartada doble verificación
+    Conf += " -u \"" + ui->Luser->text() +"\" -p \"";
+    Conf += ui->Lpass->text()+"\"";
   }
 
   if (FileNameBool) { // Establecer Formato de salida
@@ -179,27 +183,39 @@ void MainWindow::Iniz2 (const bool FileNameBool,const MinInt& Mode,QString FileN
       else if (FileName.contains(".vtt") && Mode == 3) Conf += " -o \"" + FileName + "\" --convert-subs \"vtt\"";
       else if (FileName.contains(".lrc") && Mode == 3) Conf += " -o \"" + FileName + "\" --convert-subs \"lrc\"";
       else if (FileName.contains(".unk")) Conf += " -o \"" + FileName + "\"";
-      else Conf += " -o \"" + FileName + ".%(ext)s\""; // Etencion por defecto
+      else Conf += " -o \"" + FileName + ".%(ext)s\""; // Extencion por defecto
 
-    } else if (Estate == 1)  Conf += " -o \"" + FileName + ".%(ext)s\""; // Etencion por defecto
+    }else if (Estate == 1)  Conf += " -o \"" + FileName + ".%(ext)s\""; // Extencion por defecto
     // Salidas a Directorio
-  } else {
+  }else {
     Conf += " -o \"";
-    if (Mode == 2) Conf+= QFileDialog::getExistingDirectory(this, LangString[12],
+    QString Flnm;
+
+    // Ubicación
+    if (Mode == 2) Flnm = QFileDialog::getExistingDirectory(this, LangString[12],
                                                                  QDir::toNativeSeparators(QDir::homePath()+"\\Videos") ,
                                                                  QFileDialog::ShowDirsOnly
                                                                  | QFileDialog::DontResolveSymlinks);
-    else if (Mode == 3) Conf+= QFileDialog::getExistingDirectory(this, LangString[13],
+    else if (Mode == 3) Flnm = QFileDialog::getExistingDirectory(this, LangString[13],
                                                                  QDir::toNativeSeparators(QDir::homePath()+"\\Videos") ,
                                                                  QFileDialog::ShowDirsOnly
                                                                  | QFileDialog::DontResolveSymlinks);
-    else if (Mode == 1 ) Conf+= QFileDialog::getExistingDirectory(this, LangString[11],
+    else if (Mode == 1 ) Flnm = QFileDialog::getExistingDirectory(this, LangString[11],
                                                                   QDir::toNativeSeparators(QDir::homePath()+"\\Music") ,
                                                                   QFileDialog::ShowDirsOnly
                                                                   | QFileDialog::DontResolveSymlinks);
-    if (ui->Oalbm->isChecked())  Conf += "/%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s\" "; //Album Mode
-    else Conf += "/%(title)s.%(ext)s\"";
-}
+
+    if (Flnm == "") goto salida;
+
+    // Titulo de Salida
+    if (ui->Oalbm->isChecked())  Flnm += "/%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s\" "; //Album Mode
+
+
+    else Flnm += "/%(title)s.%(ext)s\"";
+  }
+  if (!ui->Lproxy->text().isEmpty()) {
+    Conf += " --proxy \"" + ui->Lproxy->text() +"\" ";
+  }
   ui->Progress->setValue(35);
   setWindowTitle("DL-JS Lis - "+LangString[9]); //Rev
 
@@ -211,11 +227,12 @@ void MainWindow::Iniz2 (const bool FileNameBool,const MinInt& Mode,QString FileN
     setWindowTitle("DL-JS Lis");
   } else  {
     if (!(ui->Lpass->text().isEmpty())) Conf = Conf.replace( (Conf.indexOf("\" -p \"") + 6) , ui->Lpass->text().length() ,"******");
-
+    salida:;
     ui->Status->setText(LangString[1]);
     ui->Progress->setValue(0);
     setWindowTitle("DL-JS Lis");
   }
+
   ui->Progress->setEnabled(false);
   ui->Report->setText(Conf);
 }
@@ -228,7 +245,7 @@ void MainWindow::on_URL_textChanged(const QString &arg1) {
       ui->Mode3->setEnabled(false);
       if (Inic == 0) ui->Status->setText(LangString[2]);
       if (Inic == 2) ui->Status->setText(LangString[3]);
-      ui->Bupdt->setEnabled(true);
+      ui->Bwebc->setEnabled(true);
       ui->Report->setText(LangString[4]);
       ui->Report->setText(LangString[5]);
     }else if (arg1.isEmpty()) {
@@ -247,6 +264,7 @@ void MainWindow::on_URL_textChanged(const QString &arg1) {
     QString temp = URLanlz(arg1);
     if (temp == "crunchyroll") ui->Mode1->setEnabled(false);
     ui->Site->setText(temp.replace(0 , 1 , temp.begin()->toUpper()));
+    ui->Progress->setValue(0);
 }
 
 // Boton de configuración
@@ -277,6 +295,28 @@ void MainWindow::IStart (void) {
     ui->Ometa->setChecked(true);  //Default
     ui->Otumb->setChecked(true);  //Default
   }
+  if (ui->Rbper->isChecked()) {
+    ui->Oucor->setEnabled(false);
+    ui->Ouffm->setEnabled(false);
+    ui->Ourla->setEnabled(false);
+    ui->Ouvrd->setEnabled(false);
+    ui->Ouwgt->setEnabled(false);
+    ui->Ouydl->setEnabled(false);
+
+    if (ui->Ouydl->isChecked()) {
+      ui->Ouvrd->setEnabled(true);
+    } else {
+      ui->Ouvrd->setEnabled(false);
+      ui->Ouvrd->setChecked(true);
+    }
+  } else {
+    ui->Oucor->setEnabled(true);
+    ui->Ouffm->setEnabled(true);
+    ui->Ourla->setEnabled(true);
+    ui->Ouvrd->setEnabled(true);
+    ui->Ouwgt->setEnabled(true);
+    ui->Ouydl->setEnabled(true);
+  }
 }
 
 // Boton Guardar Configuración
@@ -284,9 +324,9 @@ void MainWindow::on_Bsave_clicked() {
   if ((!ui->Lpass->text().isEmpty() && !ui->Luser->text().isEmpty()) || (ui->Lpass->text().isEmpty() && ui->Luser->text().isEmpty())) {
     ui->ConfigW->move(400,300);
     ui->ConfigW->setEnabled(false);
-    ui->CLabel7->setText("");
+    ui->Llinfo->setText("");
   } else {
-    ui->CLabel7->setText(LangString[7]);
+    ui->Llinfo->setText(LangString[7]);
   }
 }
 // Reset
@@ -314,6 +354,12 @@ void MainWindow::on_Brest_clicked()
     if (LangString[10] == "Spanish") ui->VRes->setCurrentIndex(0);
     else if (LangString[10] == "English") ui->VRes->setCurrentIndex(1);
     system("cls"); // Liampiar Consola
+
+    ui->Progress->setValue(0);
+    ui->Lproxy->clear();
+    ui->Rbrec->setChecked(true);
+
+    IStart();
 }
 
 
@@ -332,18 +378,15 @@ void MainWindow::on_Babut_clicked() {
 
 //Modo 1
 void MainWindow::on_Mode1_clicked() {
- ui->Status->setText(LangString[9]);
  Iniz(1);
 }
 
 // Modo 2
 void MainWindow::on_Mode2_clicked() {
-  ui->Status->setText(LangString[9]);
   Iniz(2);
 }
 // Modo 3
 void MainWindow::on_Mode3_clicked() {
-  ui->Status->setText(LangString[9]);
   Iniz(3);
 }
 
@@ -360,12 +403,23 @@ void MainWindow::on_Oalbm_stateChanged(int arg1) {
   }
 }
 
-//Update
-void MainWindow::on_Bupdt_clicked() {
-   Updte(0);
+void MainWindow::on_Bwebc_clicked() {
+   // Updte(0);
+   //1 Sistema de deteccion de componentes instalados (Otro modo del Start())
+   //2 Si falta uno esencial El nombre del boton pasa de Actualizar a Instalar
+   //3 Revisa las acciones del usuario
+   //3a Recomendado
+   // - Detecta si hay actualizaciones de DL-JS
+   // - Las descarga si hay
+   // - Autualiza el YoutubeDL (Indeferentemente)
+   // - Si Hay Autualizacion de DL-JS 
+   //     Crea un programa en 2do Plano e intala DL-JS
+   //     El antiguo YoutubeDL queda respaldado como un .Resp
+    ui->Prox_Updt->move(0,0);
 }
 
 void MainWindow::Iniz (const MinInt& Mode) {
+  ui->Status->setText(LangString[9]);
   system("color 3");
   MinInt Estate = Start();
   if (!ui->URL->text().isEmpty()) {
@@ -380,17 +434,17 @@ void MainWindow::Iniz (const MinInt& Mode) {
       if (Mode == 2) fileName = QFileDialog::getSaveFileName(this,
           LangString[12],
           QDir::toNativeSeparators(QDir::homePath()+"\\Videos\\VideoSinNombre"),
-          "Video MP4 (*.mp4);; Video FLV (*.flv);;Video Ogg (*.ogg);; Video Matroska (*.mkv);; Video AVI (*.avi);; Sin Extencion (*.unk)");
+          "Formato Orignal (*) ;;Video MP4 (*.mp4) ;;Video FLV (*.flv) ;;Video Ogg (*.ogg) ;;Video Matroska (*.mkv) ;;Video AVI (*.avi) ;;Sin Extencion (*.unk)");
 
       else if (Mode == 1) fileName = QFileDialog::getSaveFileName(this,
           LangString[11],
           QDir::toNativeSeparators(QDir::homePath()+"\\Music\\AudioSinNombre"),
-          "Audio MP3 (*.mp3) ;; Audio ACC (*.acc) ;; Audio FLAC (*.flac);; Audio M4A (*.m4a) ;; Audio OPUS (*.opus) ;; Audio Vorbis (*.vorbis)");
+          "Formato Orignal (*) ;;Audio MP3 (*.mp3) ;;Audio ACC (*.acc) ;;Audio FLAC (*.flac) ;;Audio M4A (*.m4a) ;;Audio OPUS (*.opus) ;;Audio Vorbis (*.vorbis)");
 
       else if (Mode == 3) fileName = QFileDialog::getSaveFileName(this,
           LangString[13],
           QDir::toNativeSeparators(QDir::homePath()+"\\Videos\\SubtitulosSinNombre"),
-          "Sub STR (*.str);; Sub ASS (*.ass);;Sub VTT (*.vtt);; Sub LRC (*.lrc)");
+          "Formato Orignal (*) ;;Sub STR (*.str) ;;Sub ASS (*.ass) ;;Sub VTT (*.vtt) ;;Sub LRC (*.lrc)");
 
       } else if (Estate == 1) {
         fileName = QFileDialog::getSaveFileName(this,
@@ -399,7 +453,7 @@ void MainWindow::Iniz (const MinInt& Mode) {
       }
       ui->centralwidget->setEnabled(true);
 
-      Iniz2(true,Mode,fileName);
+      if (fileName != "") Iniz2(true,Mode,fileName);
     } else Iniz2(false,Mode);
   }
   else {
@@ -417,10 +471,10 @@ bool MainWindow::GetIdiom() {
   LangString[2] = tr("Falta Youtube-DL y FFmpeg");
   LangString[3] = tr("Falta Youtube-DL");
   LangString[4] = tr("Descarga De Youtube DL & FFMpeg");
-  LangString[5] = tr("Presiona Ctrl + U Para descargar Youtube-DL y FFMpeg");
+  LangString[5] = tr("Instale Youtube-DL y FFMpeg junto al ejecutable");
   LangString[6] = tr("Ingrese URL");
   LangString[7] = tr("Ingrese todos los datos");
-//  LangString[8] = tr("Ingrese un nombre!!!");
+//  LangString[8] = tr("");
   LangString[9] = tr("Espere a la Consola");
   LangString[11] = tr("Guardar Audio...");
   LangString[12] = tr("Guardar Video...");
@@ -448,4 +502,46 @@ void MainWindow::on_LKdoc_clicked() {
 
 void MainWindow::on_LKmal_clicked() {
   QDesktopServices::openUrl(QUrl("mailto:drxzen@gmail.com"));
+}
+
+void MainWindow::on_Bout_clicked() {
+    ui->Prox_Updt->move(400,300);
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+  MinInt Salida = 0;
+    if (ui->Rbrec->isChecked()){
+      Salida = Updte(1);
+      //All Updte
+    } else if (ui->Rbper->isChecked()){
+      MinInt Entrada = 0;
+      if (ui->Oucor->isChecked()) Entrada +=4;
+      if (ui->Ouydl->isChecked()) Entrada +=1;
+      if (ui->Ouffm->isChecked()) Entrada +=2;
+      if (ui->Ouwgt->isChecked()) Entrada +=8;
+      Salida = Updte(Entrada);
+    }
+    if (Salida==0) ui->Status->setText(tr("Actualización Exitosa"));
+    else {
+      ui->Status->setText(tr(&"Error Durante la actulización: "[Salida]));
+    }
+}
+
+void MainWindow::on_Rbrec_clicked() {
+  // ui->Oresp->setEnabled(false);
+  ui->Oucor->setEnabled(false);
+  ui->Ouffm->setEnabled(false);
+  // ui->Ouvrd->setEnabled(false);
+  ui->Ouwgt->setEnabled(false);
+  ui->Ouydl->setEnabled(false);
+}
+
+void MainWindow::on_Rbper_clicked() {
+  // ui->Oresp->setEnabled(true);
+  ui->Oucor->setEnabled(true);
+  ui->Ouffm->setEnabled(true);
+  // ui->Ouvrd->setEnabled(true);
+  ui->Ouwgt->setEnabled(true);
+  ui->Ouydl->setEnabled(true);
 }

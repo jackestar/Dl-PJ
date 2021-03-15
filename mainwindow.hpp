@@ -1,5 +1,5 @@
-  #ifndef MAINWINDOW_HPP
-#define MAINWINDOW_HPP
+#ifndef MAINWINDOW_HPP
+  #define MAINWINDOW_HPP
 
 #include <QMainWindow>
 #include <QFile>
@@ -7,6 +7,10 @@
 #include <QFileDialog>
 #include <QDir>
 #include <QTranslator>
+
+//#ifndef PRECONFQT_HPP
+//#include <PreconfQT.hpp>
+//#endif
 
 typedef unsigned short int MinInt;
 
@@ -57,11 +61,19 @@ class MainWindow : public QMainWindow
 
     void on_Mode3_clicked();
 
-    void on_Bupdt_clicked();
+    void on_Bwebc_clicked();
 
     void on_Oanam_stateChanged(int arg1);
 
     void on_Oalbm_stateChanged(int arg1);
+
+    void on_Bout_clicked();
+
+    void on_pushButton_clicked();
+
+    void on_Rbrec_clicked();
+
+    void on_Rbper_clicked();
 
   private:
     Ui::MainWindow *ui;

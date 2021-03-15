@@ -3,11 +3,12 @@
 Todo termino de licencia es abarcado por la GNU GENERAL PUBLIC LICENSE
 
 Remarcando lo siguiente
-	Toda la obra esta libre de garantias y es de codigo fuente libre
 
+	Toda la obra esta libre de garantias y es de codigo fuente libre
+	
 	La descarga, instalación, ejecucion y uso de la obra estan libre de
 	cualquier tipo de publicidad, pago o tipo de telemetria o estadistica
-
+	
 	Al usar codigo fuente, compilados del mismo o cualquier biblioteca en
 	esta obra se esta inplicitamente aceptando los terminos y
 	condiciones de esta obra y terceros, descritas en las licencias que
