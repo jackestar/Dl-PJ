@@ -7,8 +7,6 @@
     target: Windows # optional, default is desktop
     # Architecture for Windows/Android
     arch: win64_msvc2017_64 # optional
-    tools: 'tools_ifw,4.0,qt.tools.ifw.40 tools_qtcreator,4.13.2-0,qt.tools.qtcreator'
-    extra: '--external 7z'
 
 # Controls when the action will run. 
 on:
