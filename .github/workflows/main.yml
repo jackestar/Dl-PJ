@@ -63,5 +63,5 @@ jobs:
 
         if: matrix.qt_ver == '5.12.6' && matrix.qt_arch == 'win64_msvc2017_64'
         with:
-          path: ${{ env.Qt5_Dir }}
+          path: ${{ Qt5_Dir }}
           key: ${{ runner.OS }}-Qt-${{ matrix.qt_ver }}-${{ matrix.qt_target }}-${{ matrix.qt_arch }}
