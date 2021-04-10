@@ -58,10 +58,10 @@ jobs:
           qmake
           mingw32-make
 
-      - name: CacheQt
-        uses: actions/cache@v1
+  #    - name: CacheQt
+  #      uses: actions/cache@v1
 
-        if: matrix.qt_ver == '5.12.6' && matrix.qt_arch == 'win64_msvc2017_64'
-        with:
-          path: ${{ Qt5_Dir }}
-          key: ${{ runner.OS }}-Qt-${{ matrix.qt_ver }}-${{ matrix.qt_target }}-${{ matrix.qt_arch }}
+  #      if: matrix.qt_ver == '5.12.6' && matrix.qt_arch == 'win64_msvc2017_64'
+  #      with:
+  #        path: ${{ Qt5_Dir }}
+  #        key: ${{ runner.OS }}-Qt-${{ matrix.qt_ver }}-${{ matrix.qt_target }}-${{ matrix.qt_arch }}
