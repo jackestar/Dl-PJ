@@ -14,9 +14,10 @@
 #endif
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) , ui(new Ui::MainWindow) {
+  Inicio();
   ui->setupUi(this);
   // Establecer Idioma
-
+  ui->centralwidget->setWindowIcon(QIcon::fromTheme("icon"));
   if (MainWindow::GetIdiom()) {
     ui->Status->setText("Traducción no disponible");
     ui->Report->setText("La aplicación no tiene soporte para el idioma "+LangString[10]+" .La aplicación pasa al Español por defecto");
@@ -40,6 +41,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) , ui(new Ui::MainW
   ui->Fabot->move(400,300);
   ui->Prox_Updt->move(400,300);
   system(toCharString("title DL-JS "+tr("Consola")+" && color 3 && cls"));
+  on_Rbrec_clicked(); // PreConfiguración Actualización
 }
 
 MainWindow::~MainWindow() {
@@ -49,8 +51,9 @@ MainWindow::~MainWindow() {
 //Audio Video Sub
 void MainWindow::Iniz2 (const bool FileNameBool,const MinInt& Mode,QString FileName) {
 
+
   MinInt Estate = Start();
-  char PrConfg[16] = "...............";
+  char PrConfg[17] = "................";
 
     //Modo
   if (Mode == 1) PrConfg[0] = 'a';               // Best A
@@ -146,14 +149,17 @@ void MainWindow::Iniz2 (const bool FileNameBool,const MinInt& Mode,QString FileN
   if (ui->Ometa->isChecked() && MetaAsing) PrConfg[11] = '8'; //Meta
   if (Mode == 3) PrConfg[15] = '9';               //Skip dowload 4 sub
   if (ui->Oelst->isChecked()) PrConfg[12] = '(';  //Playlist
-  else if (ui->Ourla->isChecked()) URLc[1] = true;     //Analizar URL
+  if (ui->Oseqr->isChecked()) PrConfg[6] = '3';
+  if (ui->Ourla->isChecked()) URLc[1] = true;     //Analizar URL
+  if (ui->Osbre->isChecked()) PrConfg[16] = '+';
+
 
   ui->Progress->setValue(25);
 
   QString Conf = Config(PrConfg);
 
   //Configuración de Usuario
-  if (!(ui->Lpass->text().isEmpty())) { // Descartada doble verificación
+  if (!(ui->Lpass->text().isEmpty())) { // Descartada doble verificación // el dialogo no cierra sin los dos
     Conf += " -u \"" + ui->Luser->text() +"\" -p \"";
     Conf += ui->Lpass->text()+"\"";
   }
@@ -171,12 +177,12 @@ void MainWindow::Iniz2 (const bool FileNameBool,const MinInt& Mode,QString FileN
       else if (FileName.contains(".mkv") && Mode == 2) Conf += " -o \"" + FileName + "\" --recode-video \"mkv\"";
       else if (FileName.contains(".avi") && Mode == 2) Conf += " -o \"" + FileName + "\" --recode-video \"avi\"";
     // Salida de Audio según la etencion
-      else if (FileName.contains(".mp3") && Mode == 1) Conf += " -o \"" + FileName + "\"  --audio-quality 0 -x --audio-format \"mp3\"";
-      else if (FileName.contains(".aac") && Mode == 1) Conf += " -o \"" + FileName + "\"  --audio-quality 0 -x --audio-format \"aac\"";
-      else if (FileName.contains(".flac") && Mode == 1) Conf += " -o \"" + FileName + "\"  --audio-quality 0 -x --audio-format \"flac\"";
-      else if (FileName.contains(".m4a") && Mode == 1) Conf += " -o \"" + FileName + "\"  --audio-quality 0 -x --audio-format \"m4a\"";
-      else if (FileName.contains(".opus") && Mode == 1) Conf += " -o \"" + FileName + "\"  --audio-quality 0 -x --audio-format \"opus\"";
-      else if (FileName.contains(".vorbis") && Mode == 1) Conf += " -o \"" + FileName + "\"  --audio-quality 0 -x --audio-format \"vorbis\"";
+      else if (FileName.contains(".mp3") && Mode == 1) Conf += " -o \"" + FileName + "\" --audio-quality 0 -x --audio-format \"mp3\"";
+      else if (FileName.contains(".aac") && Mode == 1) Conf += " -o \"" + FileName + "\" --audio-quality 0 -x --audio-format \"aac\"";
+      else if (FileName.contains(".flac") && Mode == 1) Conf += " -o \"" + FileName + "\" --audio-quality 0 -x --audio-format \"flac\"";
+      else if (FileName.contains(".m4a") && Mode == 1) Conf += " -o \"" + FileName + "\" --audio-quality 0 -x --audio-format \"m4a\"";
+      else if (FileName.contains(".opus") && Mode == 1) Conf += " -o \"" + FileName + "\" --audio-quality 0 -x --audio-format \"opus\"";
+      else if (FileName.contains(".vorbis") && Mode == 1) Conf += " -o \"" + FileName + "\" --audio-quality 0 -x --audio-format \"vorbis\"";
     // Salida de Subtitulo según la etencion
       else if (FileName.contains(".srt") && Mode == 3) Conf += " -o \"" + FileName + "\" --convert-subs \"srt\"";
       else if (FileName.contains(".ass") && Mode == 3) Conf += " -o \"" + FileName + "\" --convert-subs \"ass\"";
@@ -186,7 +192,12 @@ void MainWindow::Iniz2 (const bool FileNameBool,const MinInt& Mode,QString FileN
       else Conf += " -o \"" + FileName + ".%(ext)s\""; // Extencion por defecto
 
     }else if (Estate == 1)  Conf += " -o \"" + FileName + ".%(ext)s\""; // Extencion por defecto
-    // Salidas a Directorio
+
+    //Download archive
+    FileName.truncate(FileName.lastIndexOf('.'));
+    if (ui->Oplay->isChecked()) Conf += " --download-archive \"" + FileName + ".txt\"";
+
+
   }else {
     Conf += " -o \"";
     QString Flnm;
@@ -205,36 +216,43 @@ void MainWindow::Iniz2 (const bool FileNameBool,const MinInt& Mode,QString FileN
                                                                   QFileDialog::ShowDirsOnly
                                                                   | QFileDialog::DontResolveSymlinks);
 
-    if (Flnm == "") goto salida;
+    if (Flnm == "") {
 
+    ui->Status->setText(LangString[8]);
+    ui->Progress->setValue(0);
+    setWindowTitle("DL-JS Lis");
+    ui->Progress->setEnabled(false);
+    goto salida;
+      }
+    QString FlnmDir = Flnm;
     // Titulo de Salida
-    if (ui->Oalbm->isChecked())  Flnm += "/%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s\" "; //Album Mode
+    if (ui->Oalbm->isChecked())  Flnm += "/%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s\""; //Album Mode
+    else if (Mode== 1)Flnm += "/%(artist)s - %(title)s.%(ext)s\" ";//in Rev
+    else Flnm += "/%(title)s.%(ext)s\" ";
+    Conf += Flnm;
 
+    //Download archive
 
-    else Flnm += "/%(title)s.%(ext)s\"";
+    if (ui->Oplay->isChecked()) Conf += " --download-archive \"" + FlnmDir + "/Lista.txt\"";
   }
-  if (!ui->Lproxy->text().isEmpty()) {
-    Conf += " --proxy \"" + ui->Lproxy->text() +"\" ";
-  }
+  if (!ui->Lproxy->text().isEmpty()) Conf += " --proxy \"" + ui->Lproxy->text() +"\" ";
   ui->Progress->setValue(35);
-  setWindowTitle("DL-JS Lis - "+LangString[9]); //Rev
 
   if (!Execut(URLanlz(ui->URL->text(),URLc) , Conf)) {
-    if (!(ui->Lpass->text().isEmpty())) Conf = Conf.replace( (Conf.indexOf("\" -p \"") + 6) , ui->Lpass->text().length() ,"******");
 
     ui->Status->setText(LangString[0]);
     ui->Progress->setValue(100);
-    setWindowTitle("DL-JS Lis");
   } else  {
-    if (!(ui->Lpass->text().isEmpty())) Conf = Conf.replace( (Conf.indexOf("\" -p \"") + 6) , ui->Lpass->text().length() ,"******");
-    salida:;
     ui->Status->setText(LangString[1]);
     ui->Progress->setValue(0);
-    setWindowTitle("DL-JS Lis");
   }
 
+  setWindowTitle("DL-JS Lis");
   ui->Progress->setEnabled(false);
+  salida:;
+  if (!(ui->Lpass->text().isEmpty())) Conf = Conf.replace( (Conf.indexOf("\" -p \"") + 6) , ui->Lpass->text().length() ,"******");
   ui->Report->setText(Conf);
+  system(toCharString("title DL-JS "+tr("Consola")));
 }
 
 void MainWindow::on_URL_textChanged(const QString &arg1) {
@@ -358,6 +376,9 @@ void MainWindow::on_Brest_clicked()
     ui->Progress->setValue(0);
     ui->Lproxy->clear();
     ui->Rbrec->setChecked(true);
+    ui->Oplay->setChecked(false);
+    ui->Oseqr->setChecked(false);
+    ui->Osbre->setChecked(false);
 
     IStart();
 }
@@ -419,6 +440,7 @@ void MainWindow::on_Bwebc_clicked() {
 }
 
 void MainWindow::Iniz (const MinInt& Mode) {
+  setWindowTitle("DL-JS Lis - "+LangString[9]);
   ui->Status->setText(LangString[9]);
   system("color 3");
   MinInt Estate = Start();
@@ -454,6 +476,14 @@ void MainWindow::Iniz (const MinInt& Mode) {
       ui->centralwidget->setEnabled(true);
 
       if (fileName != "") Iniz2(true,Mode,fileName);
+      else {
+
+    ui->Status->setText(LangString[8]);
+    ui->Progress->setValue(0);
+    setWindowTitle("DL-JS Lis");
+    ui->Progress->setEnabled(false);
+
+      }
     } else Iniz2(false,Mode);
   }
   else {
@@ -474,7 +504,7 @@ bool MainWindow::GetIdiom() {
   LangString[5] = tr("Instale Youtube-DL y FFMpeg junto al ejecutable");
   LangString[6] = tr("Ingrese URL");
   LangString[7] = tr("Ingrese todos los datos");
-//  LangString[8] = tr("");
+  LangString[8] = tr("Cancelado");
   LangString[9] = tr("Espere a la Consola");
   LangString[11] = tr("Guardar Audio...");
   LangString[12] = tr("Guardar Video...");

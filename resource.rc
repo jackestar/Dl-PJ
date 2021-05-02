@@ -1,9 +1,9 @@
-#define VER_FILEVERSION 0,5,09,0
-#define VER_FILEVERSION_STR "0.5.09.0"
+#define VER_FILEVERSION 0,5,09,2
+#define VER_FILEVERSION_STR "0.5.09.2"
 
 #include <windows.h>
 
-icono ICON "icon.ico"
+icono ICON "IMG/icon.ico"
 
 #ifndef DEBUG
 #define VER_DEBUG 0

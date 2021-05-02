@@ -32,6 +32,10 @@
   <property name="windowTitle">
    <string>DL-JS Lis</string>
   </property>
+  <property name="windowIcon">
+   <iconset theme="icon" resource="style.qrc">
+    <normaloff>:/style/icon</normaloff>:/style/icon</iconset>
+  </property>
   <property name="documentMode">
    <bool>false</bool>
   </property>
@@ -360,7 +364,7 @@
     </property>
     <property name="geometry">
      <rect>
-      <x>400</x>
+      <x>0</x>
       <y>0</y>
       <width>400</width>
       <height>300</height>
@@ -550,6 +554,9 @@
      </property>
     </widget>
     <widget class="QCheckBox" name="Ometa">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>210</x>
@@ -573,6 +580,9 @@
      </property>
     </widget>
     <widget class="QCheckBox" name="Otumb">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>210</x>
@@ -613,27 +623,6 @@
      </property>
      <property name="text">
       <string>Restrinción de Nombres</string>
-     </property>
-     <property name="checked">
-      <bool>true</bool>
-     </property>
-    </widget>
-    <widget class="QCheckBox" name="Osydt">
-     <property name="geometry">
-      <rect>
-       <x>210</x>
-       <y>243</y>
-       <width>180</width>
-       <height>19</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Montserrat</family>
-      </font>
-     </property>
-     <property name="text">
-      <string>Saltar Datos Basura (Youtube)</string>
      </property>
      <property name="checked">
       <bool>true</bool>
@@ -1078,8 +1067,8 @@ background:#19232D;
      </property>
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>223</y>
+       <x>210</x>
+       <y>203</y>
        <width>190</width>
        <height>19</height>
       </rect>
@@ -1106,7 +1095,7 @@ background:#19232D;
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>243</y>
+       <y>223</y>
        <width>180</width>
        <height>19</height>
       </rect>
@@ -1169,6 +1158,55 @@ background:#19232D;
        <string>Ingles</string>
       </property>
      </item>
+    </widget>
+    <widget class="QCheckBox" name="Oplay">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>243</y>
+       <width>180</width>
+       <height>19</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Montserrat</family>
+       <pointsize>8</pointsize>
+       <stylestrategy>PreferAntialias</stylestrategy>
+      </font>
+     </property>
+     <property name="text">
+      <string>List-Check</string>
+     </property>
+     <property name="checked">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="Osbre">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>210</x>
+       <y>243</y>
+       <width>180</width>
+       <height>19</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Montserrat</family>
+       <pointsize>8</pointsize>
+       <stylestrategy>PreferAntialias</stylestrategy>
+      </font>
+     </property>
+     <property name="text">
+      <string>No Sobreescribir</string>
+     </property>
     </widget>
    </widget>
    <widget class="QWidget" name="Fabot" native="true">
@@ -1923,6 +1961,9 @@ border:none;</string>
       <property name="text">
        <string/>
       </property>
+      <property name="placeholderText">
+       <string>socks5://127.0.0.1:1080/</string>
+      </property>
      </widget>
      <widget class="QLabel" name="label_2">
       <property name="geometry">
@@ -1965,6 +2006,53 @@ border:none;</string>
      </property>
      <property name="text">
       <string>Debug</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="Oseqr">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>200</x>
+       <y>140</y>
+       <width>180</width>
+       <height>19</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Montserrat</family>
+       <pointsize>8</pointsize>
+       <stylestrategy>PreferAntialias</stylestrategy>
+      </font>
+     </property>
+     <property name="text">
+      <string>Solo Conecciones IPv6</string>
+     </property>
+     <property name="checked">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="Osydt">
+     <property name="geometry">
+      <rect>
+       <x>200</x>
+       <y>160</y>
+       <width>180</width>
+       <height>19</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Montserrat</family>
+      </font>
+     </property>
+     <property name="text">
+      <string>Saltar Datos Basura (Youtube)</string>
      </property>
      <property name="checked">
       <bool>true</bool>

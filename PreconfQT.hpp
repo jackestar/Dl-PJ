@@ -32,6 +32,7 @@ QString URLanlz (QString URL, bool config[]);   // Limpeza de URL
 QString URLanlz (QString URL);                  // WebSite Name
 QString Config (char config[]);                 // Argumentos para DL
 bool Execut (QString URLanlz, QString &Config); // Ejecucion de DL
+bool Inicio(void);
 
 //SO Variants
 MinInt Updte (MinInt Type = 0);
@@ -46,6 +47,7 @@ QString URLanlz (QString URL, bool config[]) {
 
     1 Auto music.youtube.com
     2 clean "&"
+    3 browse to playlistConnvert (ModoAlbm)
 */
   const QString Uyout = "www.youtube.com";
   const QString Umyot = "music.youtube.com";
@@ -58,17 +60,17 @@ QString URLanlz (QString URL) {
 
 URL = URL.toLower();
 // Salida de nombres complejos
-if (URL.contains("music.youtube.com/")) return  "Youtube Music";
-else if (URL.contains("drive.google.com/")) return  "Google Drive";
-else if (URL.contains("www.hbo.com/")) return  "HBO";
-else if (URL.contains("abc.net.au/")) return  "ABC";
-else if (URL.contains("abcnews.go.com/")) return  "ABC News";
+if (URL.contains("music.youtube.com/")) return "Youtube Music";
+else if (URL.contains("drive.google.com/")) return "Google Drive";
+else if (URL.contains("www.hbo.com/")) return "HBO";
+else if (URL.contains("abc.net.au/")) return "ABC";
+else if (URL.contains("abcnews.go.com/")) return "ABC News";
 else if (URL.contains("abc7news.com/") || URL.contains("clips.abcotvs.com")) return "ABC Owned Television Stations";
-else if (URL.contains("anime-on-demand.de/")) return  "Anime On Demand";
+else if (URL.contains("anime-on-demand.de/")) return "Anime On Demand";
 else if (URL.contains("bbc.co.uk/") || URL.contains("bbc.com")) return "BBC iPlayer";
-else if (URL.contains("cartoonnetwork.com/")) return  "Cartoon Network";
+else if (URL.contains("cartoonnetwork.com/")) return "Cartoon Network";
 else if (URL.contains("comedycentral.com/") || URL.contains("cc.com")) return "Comedy Central";
-else if (URL.contains("cnn.com/")) return  "CNN";
+else if (URL.contains("cnn.com/")) return "CNN";
 else if (URL.contains("tiktok.com/")) return "TikTok";
 else if (URL.contains("adultswim.com/")) return "Adult Swim";
 else if (URL.contains("plus.google.com/")) return "Google Plus";
@@ -212,11 +214,11 @@ QString Config (char config[]) {
       Ret+= " --restrict-filenames"; // Nombres para Windows filename
       break;
       case '2':
-      Ret+= " --console-title --no-continue --ignore-errors"; // No continua a archivos prciales
+      Ret+= " --console-title --no-continue -i"; // No continua a archivos prciales
       break;
-//      case '3':
-//      Ret+= " -o \"%(title)s.%(ext)s\""; // Titulo Predet
-//      break;
+      case '3':
+      Ret+= " -6"; // IPv6 only
+      break;
       case '/':
       Ret+= " --embed-subs";
       break;
@@ -250,8 +252,8 @@ QString Config (char config[]) {
       case '(':
       Ret+= " --yes-playlist ";
       break;
-//      case '+':
-//      Ret+= " -o \"%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s\" ";
+      case '+':
+      Ret+= " -w --no-post-overwrites"; //no sobreescribir no prost-procesados
       break;
       default:
       break;
